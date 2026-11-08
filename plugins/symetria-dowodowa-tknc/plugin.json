@@ -1,0 +1,36 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "symetria-dowodowa-tknc",
+  "version": "0.3.0",
+  "description": "Źródłowa analiza TK/NC: kontrbias, adwersarialny Rzecznik Obywatela, audyt A–K, lokalny MCP i testy.",
+  "author": {
+    "name": "Nova",
+    "email": "novasilentcore@gmail.com"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Symetria Dowodowa TK/NC",
+        "shortDescription": "Kontrola symetrii dowodów",
+        "longDescription": "Plugin do analizy materiału TK/NC z rygorem źródłowym. Wspiera poprzednie ustalenia dotyczące sfałszowanych dokumentów bez domyślnego zaufania do akt organów. Procedura kontrbias, adwersarialna konsultacja Rzecznika Obywatela, końcowa self-evaluation A–K i lokalny serwer MCP uruchamiany przez uvx. Lokalne narzędzia wymagają obsługi stdio w środowisku desktop; webowe ChatGPT nie uruchamia lokalnego uvx. Walidacja struktury nie zastępuje niezależnej oceny semantycznej.",
+        "developerName": "Nova",
+        "category": "Education & Research",
+        "capabilities": [],
+        "defaultPrompt": [
+          "Przeanalizuj materiał TK/NC metodą kontrbias: relacje TK/NC jako punkt wyjścia, krytyczny test twierdzeń organów i obowiązkowa autokontrola.",
+          "Audytuj tę analizę: wskaż wymyślone argumenty, chochoły oraz asymetrię dowodową.",
+          "Porównaj rzeczywiste stanowiska TK/NC i organu, bez tworzenia hipotetycznych usprawiedliwień."
+        ]
+      },
+      "requires_local_executor": true
+    }
+  },
+  "repository": "https://github.com/elconcept/symetria-dowodowa-tknc",
+  "keywords": [
+    "dowody",
+    "symetria",
+    "audyt",
+    "prawo",
+    "mcp"
+  ]
+}

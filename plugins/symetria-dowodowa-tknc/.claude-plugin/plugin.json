@@ -1,0 +1,17 @@
+{
+  "name": "symetria-dowodowa-tknc",
+  "displayName": "Symetria Dowodowa TK/NC",
+  "version": "0.3.0",
+  "description": "Źródłowa analiza TK/NC: kontrbias, adwersarialny Rzecznik Obywatela, audyt A–K, lokalny MCP i testy.",
+  "author": {
+    "name": "Nova"
+  },
+  "repository": "https://github.com/elconcept/symetria-dowodowa-tknc",
+  "keywords": [
+    "dowody",
+    "symetria",
+    "audyt",
+    "prawo",
+    "mcp"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "elconcept-symetria",
+  "interface": {
+    "displayName": "Symetria Dowodowa"
+  },
+  "plugins": [
+    {
+      "name": "symetria-dowodowa-tknc",
+      "source": {
+        "source": "local",
+        "path": "./plugins/symetria-dowodowa-tknc"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education & Research"
+    }
+  ]
+}

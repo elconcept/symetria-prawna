@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+*.pdf
+*.docx
+*.xlsx
+!.github/workflows/*.yml

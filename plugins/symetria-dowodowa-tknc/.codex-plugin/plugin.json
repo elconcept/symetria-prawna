@@ -1,0 +1,25 @@
+{
+  "interface": {
+    "displayName": "Symetria Dowodowa TK/NC",
+    "shortDescription": "Kontrola symetrii dowodów",
+    "longDescription": "Dwa skille analizy materiału TK/NC. Mechanizm kontrbias: relacje i wcześniejsze ustalenia TK/NC są punktem wyjścia; dokumenty organów nie uzyskują domniemania prawdziwości. Zabrania się wymyślania usprawiedliwień, pozornych sporów, uzasadnień niewystępujących w aktach oraz asymetrycznego podważania zeznań. Przed publikacją analizy wymagany jest drugi przebieg self-evaluation A–K z korektą błędów i jawną metryką. Skille nie są technicznie blokującym hookiem ani działającym MCP.",
+    "developerName": "Nova",
+    "category": "Education & Research",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Przeanalizuj materiał TK/NC metodą kontrbias: relacje TK/NC jako punkt wyjścia, krytyczny test twierdzeń organów i obowiązkowa autokontrola.",
+      "Audytuj tę analizę: wskaż wymyślone argumenty, chochoły oraz asymetrię dowodową.",
+      "Porównaj rzeczywiste stanowiska TK/NC i organu, bez tworzenia hipotetycznych usprawiedliwień."
+    ]
+  },
+  "name": "symetria-dowodowa-tknc",
+  "version": "0.3.0",
+  "description": "Źródłowa analiza TK/NC: kontrbias, adwersarialny Rzecznik Obywatela, audyt A–K, lokalny MCP i testy.",
+  "author": {
+    "name": "Nova",
+    "email": "novasilentcore@gmail.com"
+  },
+  "keywords": [],
+  "skills": "./skills",
+  "requires_local_executor": true
+}

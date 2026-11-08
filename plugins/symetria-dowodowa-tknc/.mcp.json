@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "symetria-dowodowa": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "${CLAUDE_PLUGIN_ROOT}",
+        "symetria-dowodowa-mcp"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}

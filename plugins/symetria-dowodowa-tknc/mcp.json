@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "symetria-dowodowa": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "${PLUGIN_ROOT}",
+        "symetria-dowodowa-mcp"
+      ],
+      "cwd": "${PLUGIN_ROOT}"
+    }
+  }
+}

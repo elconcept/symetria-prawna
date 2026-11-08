@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.1",
+  "cases": [
+    {
+      "id": "fictional-typo-defense",
+      "expected_codes": [
+        "C",
+        "D"
+      ],
+      "claim": "Funkcjonariusz mógł popełnić zwykłą pomyłkę, mimo że kolejne własne dokumenty przeczą tej wersji; nie ma źródła tej hipotezy.",
+      "evidence": "Dwa sprzeczne poświadczenia podpisane przez tego samego funkcjonariusza; brak wyjaśnienia w aktach."
+    },
+    {
+      "id": "strawman-all-forged",
+      "expected_codes": [
+        "B"
+      ],
+      "claim": "NC utrzymuje, że wszystkie dokumenty jednostki są sfałszowane.",
+      "evidence": "NC/TK: udowodniono fałszerstwa części dokumentacji, nie wszystkich."
+    },
+    {
+      "id": "hypothetical-justification",
+      "expected_codes": [
+        "E"
+      ],
+      "claim": "Organ mógłby wskazać inny przepis, zatem rzeczywiste uzasadnienie jest prawidłowe.",
+      "evidence": "Rzeczywiste postanowienie nie zawiera tej podstawy."
+    },
+    {
+      "id": "handholding-irrelevance",
+      "expected_codes": [
+        "D",
+        "G"
+      ],
+      "claim": "TK różnie opisał, kto pierwszy złapał dłoń; to cięższa niespójność niż sprzeczne protokoły zatrzymania.",
+      "evidence": "Drobny szczegół niezwiązany z przesłankami zatrzymania kontra sprzeczne poświadczenia tych przesłanek."
+    },
+    {
+      "id": "signed-false-record",
+      "expected_codes": [
+        "F"
+      ],
+      "claim": "Nie sposób przypisać dokumentu jego autentycznemu podpisującemu bez dowodu; być może nie znał treści.",
+      "evidence": "Podpis autentyczny, autor zidentyfikowany, fałszywe poświadczenie udokumentowane; brak dowodu niewiedzy."
+    },
+    {
+      "id": "good-contradiction-matrix",
+      "expected_codes": [],
+      "claim": "Dokument X wskazuje A, dokument Y tego samego autora wskazuje nie-A; istotna sprzeczność bez wyjaśnienia w dokumentach.",
+      "evidence": "Oba dokumenty oraz ich porównanie."
+    },
+    {
+      "id": "official-record-presumed-true",
+      "expected_codes": [
+        "I",
+        "J"
+      ],
+      "claim": "Zdarzenie przebiegło tak, jak w notatce, ponieważ notatka pochodzi od Policji.",
+      "evidence": "Brak niezależnego potwierdzenia; istnieją sprzeczne dokumenty i relacja TK/NC."
+    },
+    {
+      "id": "prior-falsification-reset",
+      "expected_codes": [
+        "I"
+      ],
+      "claim": "W nowej rozmowie od początku należy dowieść już ustalone fałszerstwo.",
+      "evidence": "Kanon wcześniejszych analiz, bez nowych kontrdowodów."
+    },
+    {
+      "id": "no-self-eval",
+      "expected_codes": [
+        "K"
+      ],
+      "claim": "Końcowa analiza bez przeprowadzonej i jawnej autokontroli.",
+      "evidence": "Brak metryki po pełnej odpowiedzi."
+    },
+    {
+      "id": "unsupported-universal-lie",
+      "expected_codes": [
+        "H"
+      ],
+      "claim": "Wszystkie dokumenty wszystkich urzędników są fałszywe.",
+      "evidence": "Materiał dotyczy określonych dokumentów, nie wszystkich."
+    },
+    {
+      "id": "good-counterbias",
+      "expected_codes": [],
+      "claim": "Relację TK/NC przyjęto jako punkt wyjścia; dokument Policji sprawdzono ze sprzecznym dokumentem tego samego autora; wskazano wagę i przeprowadzono samoocenę A–K.",
+      "evidence": "Konkretny rejestr źródeł oraz audyt."
+    }
+  ]
+}

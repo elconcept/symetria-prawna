@@ -1,0 +1,23 @@
+name: validate
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: JSON manifests and local contract tests
+        run: |
+          python3 scripts/verify_marketplaces.py
+          python3 -m unittest discover -s plugins/symetria-dowodowa-tknc/tests -p 'test*.py' -v
+      - name: MCP wheel and server smoke test
+        run: |
+          python3 -m pip install -e plugins/symetria-dowodowa-tknc
+          python3 -c "from symetria_dowodowa.server import server; print(server.name)"

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "symetria-dowodowa-tknc"
+version = "0.3.0"
+description = "Local MCP and deterministic evidence-audit tools for the TK/NC workflow"
+requires-python = ">=3.10"
+dependencies = ["mcp>=1.10,<2"]
+
+[project.scripts]
+symetria-dowodowa-mcp = "symetria_dowodowa.server:main"
+symetria-audit = "symetria_dowodowa.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/symetria_dowodowa"]
