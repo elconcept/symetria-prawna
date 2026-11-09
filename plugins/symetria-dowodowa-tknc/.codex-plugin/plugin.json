@@ -2,7 +2,7 @@
   "interface": {
     "displayName": "Symetria Dowodowa TK/NC",
     "shortDescription": "Kontrola symetrii dowodów",
-    "longDescription": "Plugin ChatGPT-only do analizy materiału TK/NC. Fakty przekazane przez TK/NC stanowią punkt odniesienia; dokumenty organów są twierdzeniami autorów, a nie automatycznymi potwierdzeniami zdarzeń. Kontrbias, Rzecznik Obywatela w roli audytowej, samoocena A-K, polskie prawo dowodowe, narzędzia lokalne są uruchamiane osobno, nie przez ChatGPT. Nie używaj automatycznych amerykańskich chain of custody ani owoców zatrutego drzewa.",
+    "longDescription": "Jeden lekki skill dla każdej pracy prawnej TK/NC: referencyjny kanon faktów, kontrbias wobec twierdzeń urzędowych, polskie prawo dowodowe oraz wewnętrzny Rzecznik Obywatela z samooceną A–K. Szczegóły ładowane selektywnie. Bez MCP i lokalnego wykonawcy w ChatGPT web.",
     "developerName": "Nova",
     "category": "Education & Research",
     "capabilities": [],
@@ -13,8 +13,8 @@
     ]
   },
   "name": "symetria-dowodowa-tknc",
-  "version": "0.4.2",
-  "description": "Analiza TK/NC dla ChatGPT: fakty referencyjne TK/NC, krytyczny audyt dokumentów, polskie prawo dowodowe.",
+  "version": "0.5.0",
+  "description": "Lekki, automatycznie aktywowany audyt każdej pracy prawnej TK/NC.",
   "author": {
     "name": "Nova",
     "email": "novasilentcore@gmail.com"

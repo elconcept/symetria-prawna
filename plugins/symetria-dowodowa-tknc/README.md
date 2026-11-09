@@ -1,5 +1,5 @@
-# Symetria Dowodowa TK/NC — ChatGPT / Codex
+# Symetria Dowodowa TK/NC — ChatGPT, v0.5.0
 
-Plugin v0.4.2. Fakty TK/NC są punktem odniesienia dla analizy; oficjalna dokumentacja zawiera twierdzenia autorów, a nie automatycznie potwierdzone zdarzenia. Dwa skille, Rzecznik Obywatela jako wewnętrzna rola kontrolna, samoocena A–K, polskie prawo dowodowe, opcjonalne lokalne narzędzia Python uruchamiane osobno, bez integracji stdio z ChatGPT.
+Jeden skill `analiza-dowodowa` dla **wszystkich** zadań prawnych użytkownika (wyłącznie sprawy TK/NC). Reguły krytyczne w krótkim SKILL.md, zaawansowany audyt A–K, kanon i prawo polskie w referencjach czytanych selektywnie.
 
-Nie ma integracji Claude. Dokumentacja w README katalogu głównego.
+Plugin instalacyjny jest **skills-only**: brak `mcp.json` i `requires_local_executor`. Lokalny kod Python w repo jest opcjonalny, niepodłączony do zwykłego ChatGPT web.

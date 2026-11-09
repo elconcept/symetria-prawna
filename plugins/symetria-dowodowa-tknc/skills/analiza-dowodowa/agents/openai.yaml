@@ -1,0 +1,5 @@
+interface:
+  display_name: "Symetria TK/NC"
+  short_description: "Audyt każdej pracy prawnej TK/NC"
+policy:
+  allow_implicit_invocation: true

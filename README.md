@@ -1,41 +1,22 @@
-# Symetria Dowodowa TK/NC — prywatny marketplace ChatGPT / Codex
+# Symetria Dowodowa TK/NC — marketplace ChatGPT / Codex
 
-Repozytorium zawiera **jeden plugin** dla ChatGPT / Codex. Wersja 0.4.2. Obsługa Claude, hooki i komendy Claude zostały usunięte.
+Wersja **0.5.0**. Jeden plugin, **jeden skill**, jawne `allow_implicit_invocation: true`.
 
-## Kanon analizy
-Fakty i bezpośrednie przeżycia TK/NC stanowią **referencyjny stan faktyczny** do oceny zeznań osób trzecich i dokumentów instytucji. Wcześniejsze ustalenia fałszowania części dokumentacji i podpisów, zgłoszone BSWP oraz prokuraturze, zachowują ciągłość między analizami. Nie wymuszaj ich każdorazowego powtórnego dowodzenia.
+- `plugins/symetria-dowodowa-tknc/skills/analiza-dowodowa/SKILL.md` — krótki protokół do każdej pracy prawnej użytkownika (wyłącznie TK/NC)
+- `references/kanon.md` — wcześniejsze ustalenia, odczyt gdy potrzebny
+- `references/audyt.md` — szczegółowe testy A–K i Rzecznik Obywatela, ładowane przy analizach złożonych lub błędach
+- `references/prawo-polskie.md` — reguły właściwe dla polskiej procedury
+- `src/` i `pyproject.toml` — *opcjonalny* lokalny Python/MCP, nieuruchamiany przez ChatGPT web
 
-**Informacja w dokumencie urzędowym jest na wejściu informacją, że jego autor tak twierdzi, a nie automatycznym ustaleniem, że zdarzenie miało miejsce.** Podpis, pieczęć i status zawodowy nie zapewniają prawdziwości treści. Porównuj twierdzenie organu z faktami referencyjnymi, dokumentami samego organu i innymi dostępnymi dowodami. Nie twórz nieudokumentowanych pomyłek, usprawiedliwień ani motywów; nie konstruuj chochołów TK/NC.
+Przyjęte fakty TK/NC są odniesieniem przy ocenie dokumentów; zapisy urzędowe są twierdzeniami autorów, nie automatycznym potwierdzeniem zdarzeń. Nie dopisuj spekulatywnych wyjaśnień ani fikcyjnych kontrargumentów organom. Utrzymuj ustalenia wcześniejszych analiz fałszowania części dokumentacji. Każde zadanie prawne kończ krótką samooceną A–K; nie myl jej z niezależnym audytem modelu.
 
-## Polski system dowodowy
-Nie przenoś zasad z procesu USA. W polskim k.p.k. nie ma powszechnego wymogu chain of custody jako warunku dopuszczalności każdego dowodu. Kopii i wydruków nie odrzuca się automatycznie ze względu na brak oryginału; znaczenie mają właściwy tryb i konkretne kwestie autentyczności, integralności oraz mocy dowodowej. Nie obowiązuje ogólna automatyczna amerykańska zasada owoców zatrutego drzewa. Zastosuj polskie przepisy, w tym art. 7, 168a, 393 i 410 k.p.k. we właściwym kontekście i w aktualnym brzmieniu.
+**Krytyczne ograniczenie:** nie dodawać `mcp.json`, `.mcp.json` ani `requires_local_executor` do instalowanego pluginu — spowodowało to wcześniej jego niedostępność w ChatGPT web.
 
-Tekst jednolity k.p.k. Dz.U. 2026 poz. 490: https://eli.gov.pl/eli/DU/2026/490/ogl (sprawdź także późniejsze nowelizacje).
+Sprawdzenie:
+```sh
+python3 scripts/verify_marketplaces.py
+python3 -m unittest discover -s plugins/symetria-dowodowa-tknc/tests -p 'test*.py'
+```
+Testy strukturalne nie potwierdzają, czy ChatGPT zawsze sam uruchamia skill; to mierzy benchmark ręczny w `docs/activation-benchmark.md`.
 
-## Struktura
-- .agents/plugins/marketplace.json — jeden plugin dla ChatGPT / Codex
-- plugins/symetria-dowodowa-tknc/plugin.json — przenośny manifest
-- plugins/symetria-dowodowa-tknc/.codex-plugin/plugin.json — manifest zgodności
-- plugins/symetria-dowodowa-tknc/skills/ — analiza, Rzecznik Obywatela, audyt A–K
-- Lokalny MCP jest dostępny wyłącznie jako osobne narzędzie CLI Python; NIE jest dołączony przez mcp.json do ChatGPT.
-- plugins/symetria-dowodowa-tknc/pyproject.toml — pakiet Python i CLI
-
-## Opcjonalny lokalny MCP — uruchamiany poza ChatGPT
-W katalogu pluginu przy Pythonie >= 3.10 oraz zainstalowanym uv można uruchomić:
-
-    uvx --from . symetria-dowodowa-mcp
-    uvx --from . symetria-audit screen /path/to/draft.txt
-
-Narzędzia: flag_asymmetry, verify_quote, rzecznik_obywatela, gate_response. Rzecznik przez MCP jest **deterministycznym audytorem**, a Rzecznik w skillu rolą krytyczną tego samego modelu, nie niezależnym drugim LLM. Lokalny MCP wymaga lokalnego wykonawcy i nie jest automatycznie uruchamiany w ChatGPT web. PASS bramki weryfikuje format i deklaracje audytu, nie materialną prawdziwość wszystkich tez.
-
-## Testy
-
-    python3 scripts/verify_marketplaces.py
-    python3 -m unittest discover -s plugins/symetria-dowodowa-tknc/tests -p 'test*.py' -v
-
-Przykładowe GitHub Actions w docs/github-actions-validate.example.yml nie są aktywnym workflow.
-
-## Prywatność
-Repo pozostaje prywatne. Nie należy umieszczać w nim akt TK/NC, skanów podpisów, danych wrażliwych ani tokenów. Brak automatycznej wysyłki dokumentów przez lokalny MCP.
-
-**Kompatybilność:** Nie dodawaj mcp.json (stdio uvx) ani requires_local_executor do manifestów instalacyjnych ChatGPT. Spowodowało to niedostępność pluginu na web w wersji 0.4.0.
+Repozytorium jest prywatne. Nie umieszczaj tu akt ani podpisów TK/NC.
