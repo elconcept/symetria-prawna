@@ -1,26 +1,32 @@
 #!/usr/bin/env python3
-"""Strict structural checks for two one-plugin marketplaces and three manifests."""
+"""Check the single ChatGPT/Codex marketplace and supported plugin manifests."""
 from pathlib import Path
 import json
-root=Path(__file__).resolve().parents[1]
-p=root/'plugins'/'symetria-dowodowa-tknc'
-read=lambda f:json.loads((root/f).read_text(encoding='utf8'))
-o=read('.agents/plugins/marketplace.json');c=read('.claude-plugin/marketplace.json')
-a=read('plugins/symetria-dowodowa-tknc/plugin.json')
-b=read('plugins/symetria-dowodowa-tknc/.claude-plugin/plugin.json')
-l=read('plugins/symetria-dowodowa-tknc/.codex-plugin/plugin.json')
-m=read('plugins/symetria-dowodowa-tknc/mcp.json')
-assert len(o['plugins'])==len(c['plugins'])==1
-assert a['name']==b['name']==l['name']==o['plugins'][0]['name']==c['plugins'][0]['name']=='symetria-dowodowa-tknc'
-assert a['version']==b['version']==l['version']=='0.3.0'
-assert o['plugins'][0]['source']['path']=='./plugins/symetria-dowodowa-tknc'
-assert c['plugins'][0]['source']=='./plugins/symetria-dowodowa-tknc'
-assert a['$schema']=='https://agent-plugins.org/schemas/1.0.0/plugin.schema.json'
-assert m['$schema']=='https://agent-plugins.org/schemas/1.0.0/mcp.schema.json'
-assert m['mcpServers']['symetria-dowodowa']['type']=='stdio'
-assert (p/'pyproject.toml').exists()
-assert (p/'agents/rzecznik-obywatela.md').exists()
-assert (p/'hooks/hooks.json').exists()
-for x in (p/'skills').iterdir():
-    if x.is_dir(): assert (x/'SKILL.md').is_file()
-print('OK: OpenAI + Claude marketplace/manifests, one plugin, portable stdio MCP')
+
+root = Path(__file__).resolve().parents[1]
+p = root / "plugins" / "symetria-dowodowa-tknc"
+
+def read(path):
+    return json.loads((root / path).read_text(encoding="utf8"))
+
+market = read(".agents/plugins/marketplace.json")
+plugin = read("plugins/symetria-dowodowa-tknc/plugin.json")
+legacy = read("plugins/symetria-dowodowa-tknc/.codex-plugin/plugin.json")
+mcp = read("plugins/symetria-dowodowa-tknc/mcp.json")
+
+assert len(market["plugins"]) == 1
+assert market["plugins"][0]["name"] == plugin["name"] == legacy["name"] == "symetria-dowodowa-tknc"
+assert market["plugins"][0]["source"]["path"] == "./plugins/symetria-dowodowa-tknc"
+assert plugin["version"] == legacy["version"] == "0.4.0"
+assert plugin["$schema"] == "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
+assert mcp["$schema"] == "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json"
+assert mcp["mcpServers"]["symetria-dowodowa"]["type"] == "stdio"
+assert (p / "skills" / "analiza-dowodowa" / "references" / "prawo-polskie.md").exists()
+assert (p / "skills" / "audyt-dowodowy" / "references" / "rzecznik-obywatela.md").exists()
+assert (p / "pyproject.toml").is_file()
+for deleted in [root / ".claude-plugin", p / ".claude-plugin", p / "hooks", p / "commands", p / "agents", p / ".mcp.json"]:
+    assert not deleted.exists(), deleted
+for item in (p / "skills").iterdir():
+    if item.is_dir():
+        assert (item / "SKILL.md").is_file(), item
+print("OK: 1 ChatGPT/Codex marketplace, 1 plugin, Polish procedure, no Claude artifacts")

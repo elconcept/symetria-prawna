@@ -18,3 +18,6 @@ Nie bilansuj liczby argumentów na każdą stronę. Równowaga oznacza identyczn
 
 ## Dokumentowanie etapu
 W rejestrze lub audycie zaznacz `kontrbias_applied=true` tylko po wykonaniu etapów 1–2. W odpowiedzi nie przedstawiaj kontrbiasu jako obiektywnego prawa „wszyscy z organów kłamią”; to ustawienie kontroli analitycznej w sprawach TK/NC.
+
+## Uzupełnienie 09.11.2026
+Dla faktów bezpośrednich TK/NC stosuj referencyjny punkt wyjścia. Każdy dokument organu opisujący X na wejściu dowodzi, że autor twierdzi X. Nie zakładaj faktycznej prawdziwości X. Przepisy prawa polskiego są w prawo-polskie.md; brak powszechnego chain of custody, automatycznego wyłączenia kopii i zasady owoców zatrutego drzewa.

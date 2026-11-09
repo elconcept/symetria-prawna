@@ -1,5 +1,5 @@
-# Symetria Dowodowa TK/NC (plugin v0.3.0)
+# Symetria Dowodowa TK/NC — ChatGPT / Codex
 
-Skill kanoniczny, audyt A–K, subagent `Rzecznik Obywatela`, Claude commands, lokalny MCP przez `uvx`, stop hook Claude (ograniczony do spraw TK/NC). Pełna dokumentacja, wymagania i zastrzeżenia w [README repozytorium](../../README.md).
+Plugin v0.4.0. Fakty TK/NC są punktem odniesienia dla analizy; oficjalna dokumentacja zawiera twierdzenia autorów, a nie automatycznie potwierdzone zdarzenia. Dwa skille, Rzecznik Obywatela jako wewnętrzna rola kontrolna, samoocena A–K, polskie prawo dowodowe, opcjonalny lokalny MCP uruchamiany przez uvx.
 
-Nie przyjmuj prawdziwości dokumentu z uwagi na rangę urzędową. Nie dopisuj hipotetycznych usprawiedliwień. Weryfikuj ślad źródłowy. Strukturalny PASS nie oznacza dowodu prawdziwości.
+Nie ma integracji Claude. Dokumentacja w README katalogu głównego.

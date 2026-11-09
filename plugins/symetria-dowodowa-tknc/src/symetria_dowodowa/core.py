@@ -18,6 +18,10 @@ RISK_PATTERNS = {
     "invented_good_faith": r"\b(m[oó]g[łl]\s+nie\s+wiedzie[ćc]|dobra\s+wiara|nie\s+mia[łl]\s+\w*\s*zamiaru)\b",
     "automatic_official_trust": r"\b(bo\s+(?:jest\s+)?urz[eę]dow[ya]|dokument\s+urz[eę]dow[ya]\s+(?:jest|musi\s+by[ćc])\s+prawdziw)\b",
     "trivial_discrepancy": r"kto\s+pierwsz[ya]\s+(?:z[łl]apa[łl]|chwyci[łl]).{0,90}(?:niewiarygodn|niesp[oó]jn)",
+    "chain_of_custody_as_bar": r"(?:brak\s+)?chain\s+of\s+custody.{0,90}(?:dyskwalifik|niedopuszczal|uniemożliw|obowiązkow|konieczn|wymagan)",
+    "copy_automatically_excluded": r"(?:kserokopi\w*|kopi\w*|wydruk\w*).{0,85}(?:nie\s+jest\s+dowodem|niedopuszczaln|trzeba\s+odrzuc|należy\s+wyklucz)",
+    "poisonous_tree_as_bar": r"owoc\w*\s+zatrutego\s+drzewa.{0,90}(?:automatycznie|niedopuszczal|odrzuc|wyklucz)",
+
 }
 
 def digest(draft: str) -> str:
@@ -66,6 +70,10 @@ def advocate_review(draft: str, source_claims: list[dict]|None=None) -> dict:
                 'Czy przedstawiono skutek naruszenia dla wolności, godności i praw procesowych?',
                 'Czy rozdzielono autorstwo, nieprawdziwość, zamiar oraz znamiona prawne?',
                 'Czy symetria nie została zastąpiona dogmatycznym domniemaniem kłamstwa wszystkich organów?',
+                'Czy fakty TK/NC stanowią referencję, a dokumenty urzędowe są wyłącznie dowodem, że ich autor coś twierdzi?',
+                'Czy kopie i wydruki są oceniane według polskiej procedury, bez automatycznego wyłączenia?',
+                'Czy nie przeniesiono z USA uniwersalnego chain of custody lub automatycznych owoców zatrutego drzewa?',
+
             ],'require_source_based_revision':True}
 
 def validate_audit(data:dict, draft:str, advocate:dict|None=None) -> dict:

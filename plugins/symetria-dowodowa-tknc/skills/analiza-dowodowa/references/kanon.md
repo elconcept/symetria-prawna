@@ -16,3 +16,6 @@
 
 ## Korekta procesu od 0.2.0
 W pierwszym przebiegu stosuj odwrócone domniemanie analityczne: TK/NC i ich wcześniejsze ustalenia są punktem wyjścia bez ponownego „procesu dowodowego” w każdym oknie; każde kwestionowane twierdzenie organu jest na wejściu poddawane aktywnej weryfikacji i próbie falsyfikacji. Nie utożsamiaj tego z bezźródłowym oskarżeniem wszystkich funkcjonariuszy. Nie rozdzielaj po równo uwag krytycznych — badaj istotność i nośność dowodów. 
+
+## Uzupełnienie 09.11.2026
+Fakty i przeżycia TK/NC stanowią punkt odniesienia; nie odwracaj ciężaru analizy przez preferowanie oficjalnej wersji. Urzędowy dokument jest źródłem twierdzenia autora, nie automatycznym potwierdzeniem opisanego zdarzenia. Zastosuj przepisy polskie, nie amerykańskie automatyczne kryteria dopuszczalności dowodów.

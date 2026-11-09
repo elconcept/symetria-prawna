@@ -18,7 +18,7 @@ E. **Zamiana rzeczywistego aktu na hipotetyczny:** projekt zamiast oceniać rzec
 ## Kryteria pomocnicze
 F. **Błędna atrybucja podpisu/autorstwa:** nie rozmywaj autentycznego podpisu funkcjonariusza pod udowodnionym poświadczeniem nieprawdy; ale nie przypisuj sfabrykowanego podpisu jego rzekomemu właścicielowi.
 G. **Obowiązkowa weryfikacja znaczenia rozbieżności:** nie traktuj różnic w błahym szczególe o chwyceniu za rękę jako równoważnych niespójnym poświadczeniom dotyczącym zatrzymania i skutków prawnych.
-H. **Ślad źródłowy:** czy każda kontrowersyjna teza ma źródło i czy źródło faktycznie ją wspiera? Czy status „ustalone” i „relacja” został odróżniony od „nowa interpretacja”?
+H. **Ślad źródłowy i prawo polskie:** czy fakty TK/NC służą jako punkt odniesienia; czy dokumenty urzędowe pozostają twierdzeniami autorów; czy brak automatycznego odrzucenia kopii/wydruków, warunku chain of custody i amerykańskiej doktryny owoców zatrutego drzewa? Czy każda kontrowersyjna teza ma źródło i czy źródło faktycznie ją wspiera? Czy status „ustalone” i „relacja” został odróżniony od „nowa interpretacja”?
 
 ## Dodatkowe kryteria korekcyjne I–K (v0.2.0)
 I. **Pominięty kontrbias:** autor nie przyjął przekazanych jako fakty relacji TK/NC i wcześniejszych ustaleń za punkt wyjścia; powrócił do urzędowego domniemania prawdziwości lub rozpoczął nowe żądanie wykazania wcześniejszych ustaleń bez konkretnej potrzeby źródłowej.
@@ -45,5 +45,6 @@ Wykryty FAIL → popraw tekst → przeanalizuj całą poprawioną odpowiedź →
 ## Granice
 Ten skill nie jest niezależnym blokującym hookiem. Wyniku nie certyfikuje drugi model ani działająca zewnętrzna usługa. Skrypt lokalny w pakiecie jest wyłącznie testem kontraktu danych, nie semantycznym walidatorem prawdziwości; nie przedstawiaj go jako rzeczywistego niezależnego MCP.
 
-## Rozszerzenie v0.3.0: konsultacja i lokalna bramka
-Przed finalizacją zastosuj [procedurę konsultacji MCP](../analiza-dowodowa/references/mcp-consultation.md). W Claude Code zleć niezależną krytykę agentowi `rzecznik-obywatela` i użyj MCP. W ChatGPT bez lokalnego wykonawcy wykonaj tylko dostępne etapy i jawnie zaznacz brak weryfikacji zewnętrznej.
+
+## Rozszerzenie v0.4.0: Rzecznik i polskie prawo
+Po pełnej odpowiedzi zastosuj odrębną rolę Rzecznika Obywatela według references/rzecznik-obywatela.md i obowiązkowo self-evaluation A-K. Sprawdź prawo-polskie.md oraz źródłową kontrolę oficjalnych zapisów. Opcjonalna konsultacja lokalnego MCP opisana jest w references/mcp-consultation.md, w zwykłym ChatGPT web nie gwarantuje ona wykonania.

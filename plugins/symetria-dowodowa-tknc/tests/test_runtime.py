@@ -32,4 +32,17 @@ class RuntimeTests(unittest.TestCase):
         self.assertEqual(validate_audit(self.make_audit('d',False),'d',advocate_review('d'))['status'],'NOT_CHECKED')
     def test_revised_draft_invalidates_receipt(self):
         self.assertEqual(validate_audit(self.make_audit('d'),'changed',advocate_review('d'))['status'],'FAIL')
+
+    def test_chain_of_custody_universal_doubt(self):
+        self.assertIn("chain_of_custody_as_bar", {x["code"] for x in risks("Brak chain of custody dyskwalifikuje każdy dowód.")})
+
+    def test_copy_automatic_exclusion(self):
+        self.assertIn("copy_automatically_excluded", {x["code"] for x in risks("Kserokopia nie jest dowodem w Polsce.")})
+
+    def test_poisonous_tree_auto_exclusion(self):
+        self.assertIn("poisonous_tree_as_bar", {x["code"] for x in risks("Owoce zatrutego drzewa automatycznie wykluczają materiał pochodny.")})
+
+    def test_polish_jurisdiction_in_advocate(self):
+        self.assertTrue(any("chain of custody" in x for x in advocate_review("test")["questions"]))
+
 if __name__=='__main__':unittest.main()
