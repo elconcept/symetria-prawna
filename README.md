@@ -1,6 +1,6 @@
 # Symetria Dowodowa TK/NC — prywatny marketplace ChatGPT / Codex
 
-Repozytorium zawiera **jeden plugin** dla ChatGPT / Codex. Wersja 0.4.0. Obsługa Claude, hooki i komendy Claude zostały usunięte.
+Repozytorium zawiera **jeden plugin** dla ChatGPT / Codex. Wersja 0.4.2. Obsługa Claude, hooki i komendy Claude zostały usunięte.
 
 ## Kanon analizy
 Fakty i bezpośrednie przeżycia TK/NC stanowią **referencyjny stan faktyczny** do oceny zeznań osób trzecich i dokumentów instytucji. Wcześniejsze ustalenia fałszowania części dokumentacji i podpisów, zgłoszone BSWP oraz prokuraturze, zachowują ciągłość między analizami. Nie wymuszaj ich każdorazowego powtórnego dowodzenia.
@@ -17,10 +17,10 @@ Tekst jednolity k.p.k. Dz.U. 2026 poz. 490: https://eli.gov.pl/eli/DU/2026/490/o
 - plugins/symetria-dowodowa-tknc/plugin.json — przenośny manifest
 - plugins/symetria-dowodowa-tknc/.codex-plugin/plugin.json — manifest zgodności
 - plugins/symetria-dowodowa-tknc/skills/ — analiza, Rzecznik Obywatela, audyt A–K
-- plugins/symetria-dowodowa-tknc/mcp.json — **opcjonalny** lokalny MCP stdio (uvx)
+- Lokalny MCP jest dostępny wyłącznie jako osobne narzędzie CLI Python; NIE jest dołączony przez mcp.json do ChatGPT.
 - plugins/symetria-dowodowa-tknc/pyproject.toml — pakiet Python i CLI
 
-## Lokalny MCP
+## Opcjonalny lokalny MCP — uruchamiany poza ChatGPT
 W katalogu pluginu przy Pythonie >= 3.10 oraz zainstalowanym uv można uruchomić:
 
     uvx --from . symetria-dowodowa-mcp
@@ -37,3 +37,5 @@ Przykładowe GitHub Actions w docs/github-actions-validate.example.yml nie są a
 
 ## Prywatność
 Repo pozostaje prywatne. Nie należy umieszczać w nim akt TK/NC, skanów podpisów, danych wrażliwych ani tokenów. Brak automatycznej wysyłki dokumentów przez lokalny MCP.
+
+**Kompatybilność:** Nie dodawaj mcp.json (stdio uvx) ani requires_local_executor do manifestów instalacyjnych ChatGPT. Spowodowało to niedostępność pluginu na web w wersji 0.4.0.
