@@ -14,16 +14,59 @@ STATUSES = {"PASS", "FAIL", "NOT_CHECKED"}
 FLAGS = ("performed", "counterbias_applied", "reviewed_final_draft",
          "institutional_authority_not_presumed", "hypothetical_defenses_removed", "visible_footer")
 RISK_PATTERNS = {
+    # Asymetria na korzyść instytucji: urzędowy zapis jako fakt, wymyślona ekskulpacja.
     "isolated_intent_dismissal": r"(?:sam[oa]?\s+w\s+sobie\s+nie\s+(?:dowodzi|przes[aą]dza)|samo\s+w\s+sobie\s+nie\s+przes[aą]dza).{0,60}(?:zamiaru|intencji|\u015bwiadomo\u015bci)",
-    "fabricated_typo_explanation": r"\b(mo[gż]?[łl]?\s+(?:by\s+)?(?:si[eę]\s+)?pomyli[ćc]|pomy[łl]ka\s+pisarska|liter[oó]wka)\b",
-    "invented_good_faith": r"\b(m[oó]g[łl]\s+nie\s+wiedzie[ćc]|dobra\s+wiara|nie\s+mia[łl]\s+\w*\s*zamiaru)\b",
-    "automatic_official_trust": r"\b(bo\s+(?:jest\s+)?urz[eę]dow[ya]|dokument\s+urz[eę]dow[ya]\s+(?:jest|musi\s+by[ćc])\s+prawdziw)\b",
+    "fabricated_typo_explanation": r"\b(m[oó](?:g[łl](?:a|o|y|i|by)?|[żz]e|gli)\s+(?:by\s+)?(?:si[eę]\s+)?pomyli[ćc]|(?:mog[łl]o|mo[żz]e)\s+(?:te[żz]\s+)?doj[śs][ćc]\s+do\s+pomy[łl]ki|pomy[łl]k\w*\s+pisarsk\w*|liter[oó]wk\w*)",
+    "invented_good_faith": r"\b(m[oó]g[łl]a?\s+nie\s+wiedzie[ćc]|mogli\s+nie\s+wiedzie[ćc]|dzia[łl]a[łl][ai]?\s+w\s+dobrej\s+wierze|nie\s+mia[łl]a?\s+\w*\s*zamiaru)",
+    "automatic_official_trust": r"\b(bo\s+(?:jest\s+)?urz[eę]dow[ya]|dokument\s+urz[eę]dow[ya]\s+(?:jest|musi\s+by[ćc])\s+prawdziw)",
+    "official_record_as_fact": r"\b(?:z\s+)?(?:notat\w*(?:\s+urz[eę]dow\w*|\s+s[łl]u[żz]bow\w*)?|dokumentacj\w*\s+medyczn\w*|kart\w*\s+(?:informacyjn|zlecenia)\w*|protok[oó][łl]\w*|raport\w*|epikryz\w*|wpis\w*\s+w\s+historii\s+choroby)\s+(?:\w+\s+){0,3}?(?:jednoznacznie\s+|niezbicie\s+|wyra[źz]nie\s+)?(?:wynika|potwierdza|dowodzi|udowadnia|ustala|przes[aą]dza|wykazuje)",
+    "presumption_of_truth_unqualified": r"domniemani\w*\s+(?:prawdziwo[śs]ci|autentyczno[śs]ci|zgodno[śs]ci\s+z\s+prawd[aą])",
+    "party_account_downgraded": r"(?:relacj|twierdzeni|zeznani|wersj|o[śs]wiadczeni|wyja[śs]nieni)\w*\s+(?:strony|u[żz]ytkownik\w*|TK|NC|T\.\s?K\.|N\.\s?C\.|pokrzywdzon\w*|zatrzyman\w*|pacjent\w*|zawiadamiaj[aą]c\w*|wnioskodawc\w*)\s+(?:\w+\s+){0,2}?(?:jest|s[aą]|ma|maj[aą]|pozostaj\w+|stanowi[aą]?)\s+(?:jedynie\s+|wy[łl][aą]cznie\s+|tylko\s+|zbyt\s+)?(?:subiektywn|niepotwierdzon|go[łl]os[łl]own|niewystarczaj[aą]c|interesown|niewiarygodn|s[łl]ab)",
+    "interested_party_one_sided": r"\b(?:jako\s+stron\w*\s+zainteresowan\w*|jest\s+stron[aą]\s+zainteresowan[aą]|w\s+interesie\s+(?:strony|TK|NC))",
+    "disproportionate_proof_demand": r"(?:dop[oó]ki|dopiero\s+gdy|chyba\s+[żz]e)\s+(?:TK|NC|strona|u[żz]ytkownik\w*|zawiadamiaj[aą]c\w*|pokrzywdzon\w*|wnioskodawc\w*)\s+(?:nie\s+)?(?:udowodni|wyka[żz]e|przedstawi|wyka[żz][aą])",
     "trivial_discrepancy": r"kto\s+pierwsz[ya]\s+(?:z[łl]apa[łl]|chwyci[łl]).{0,90}(?:niewiarygodn|niesp[oó]jn)",
+    # Proporcja i prawo polskie.
     "chain_of_custody_as_bar": r"(?:brak\s+)?chain\s+of\s+custody.{0,90}(?:dyskwalifik|niedopuszczal|uniemożliw|obowiązkow|konieczn|wymagan)",
-    "copy_automatically_excluded": r"(?:kserokopi\w*|kopi\w*|wydruk\w*).{0,85}(?:nie\s+jest\s+dowodem|niedopuszczaln|trzeba\s+odrzuc|należy\s+wyklucz)",
+    "copy_automatically_excluded": r"(?:kserokopi\w*|kopi\w*|wydruk\w*|skan\w*).{0,85}(?:nie\s+jest\s+dowodem|niedopuszczaln|trzeba\s+odrzuc|należy\s+wyklucz|nie\s+ma\s+mocy\s+dowodowej)",
     "poisonous_tree_as_bar": r"owoc\w*\s+zatrutego\s+drzewa.{0,90}(?:automatycznie|niedopuszczal|odrzuc|wyklucz)",
-
+    # Symetria w drugą stronę: bez domniemania fałszu wszystkich dokumentów instytucji.
+    "overgeneralized_forgery": r"\b(?:wszystkie|ka[żz]d[ayeo]|ca[łl][ae])\s+(?:\w+\s+){0,3}?(?:dokument\w*|notat\w*|dokumentacj\w*|wpis\w*)\s+(?:\w+\s+){0,4}?(?:jest|s[aą]|zosta[łl][ay]?)\s+(?:\w+\s+)?(?:sfa[łl]szowan|podrobion|nieprawdziw|fa[łl]szyw|poświadczon\w*\s+nieprawd)",
 }
+
+RISK_REASONS = {
+    "isolated_intent_dismissal": "Rozbicie powiązanych dowodów formułą „sam nie dowodzi”: oceń je łącznie (chronologia, niezależność, wzajemne potwierdzenia).",
+    "fabricated_typo_explanation": "Hipoteza pomyłki/literówki: zostaw tylko, jeśli wynika z materiału (wskaż źródło); inaczej usuń jako dopisaną ekskulpację.",
+    "invented_good_faith": "Niewiedza/dobra wiara autora dokumentu: zostaw tylko ze źródłem lub jako cudze stanowisko z cytatem; nie dopisuj usprawiedliwień, których nikt nie podał.",
+    "automatic_official_trust": "Urzędowy charakter dokumentu nie dowodzi prawdziwości jego treści.",
+    "official_record_as_fact": "Dokument organu/lekarza podany jako źródło faktu: zapisz „wg <dokument, k./s.>: …” i zestaw z relacją strony oraz innymi dokumentami.",
+    "presumption_of_truth_unqualified": "Domniemanie prawdziwości: wskaż przepis i tryb (nie przenoś między procedurami) oraz czy i czym jest wzruszalne; bez tego usuń.",
+    "party_account_downgraded": "Relacja strony zdegradowana jako subiektywna/niepotwierdzona: zastosuj identyczne kryterium do autora dokumentu albo usuń ocenę.",
+    "interested_party_one_sided": "Argument z interesu strony: zastosuj go symetrycznie (np. funkcjonariusz opisujący własną interwencję) albo usuń.",
+    "disproportionate_proof_demand": "Wymóg udowodnienia przed działaniem: sprawdź właściwy standard dla tego pisma (zawiadomienie ≠ akt oskarżenia ≠ wyrok).",
+    "trivial_discrepancy": "Drobna różnica narracyjna podniesiona do sprzeczności: oceń jej związek z przesłanką prawną.",
+    "chain_of_custody_as_bar": "Polska procedura nie zna uniwersalnego chain of custody jako warunku dopuszczalności.",
+    "copy_automatically_excluded": "Kopia/wydruk nie są z urzędu niedopuszczalne; ocena zależy od trybu i konkretnego zarzutu autentyczności.",
+    "poisonous_tree_as_bar": "Brak automatycznej doktryny owoców zatrutego drzewa w polskim procesie; sprawdź konkretny zakaz dowodowy.",
+    "overgeneralized_forgery": "Uogólnienie fałszu na wszystkie dokumenty: każdy dokument oceniaj indywidualnie.",
+}
+
+# Kontekst, w którym dopasowanie jest omówieniem lub zaprzeczeniem, a nie tezą.
+NEGATION_BEFORE = re.compile(
+    r"(?:nie\s+ma\s+podstaw|brak\s+podstaw|bez\s+podstaw|nie\s+wolno|nie\s+nale[żz]y|nie\s+mo[żz]na\s+przyj|"
+    r"nie\s+tw[oó]rz|nie\s+zak[łl]adaj|nie\s+dopisuj|nie\s+pisz|b[łl][eę]dn\w*|zarzut\w*|teza\s+o|hipotez\w*\s+o|"
+    r"wzorzec|fraz\w*|formu[łl]\w*|np\.|przyk[łl]ad\w*|unikaj|zamiast|nie\s+jest\s+tak,\s+[żz]e|wbrew\s+temu,\s+[żz]e|"
+    r"rzekom\w*|twierdzi,\s+[żz]e|twierdz[aą],\s+[żz]e|wg\s|wed[łl]ug\s)[^.;\n]{0,40}$",
+    re.IGNORECASE)
+_QUOTED = re.compile(r"„[^”\n]{0,600}”|“[^”\n]{0,600}”|«[^»\n]{0,600}»|\"[^\"\n]{0,400}\"|`[^`\n]{0,400}`")
+_FENCE = re.compile(r"```.*?```", re.DOTALL)
+_BLOCKQUOTE = re.compile(r"^[ \t]*>.*$", re.MULTILINE)
+
+def mask_quotes(text: str) -> str:
+    """Zastępuje cytaty, bloki kodu i cytaty blokowe spacjami (te same pozycje)."""
+    blank = lambda m: re.sub(r"[^\n]", " ", m.group(0))
+    for rx in (_FENCE, _BLOCKQUOTE, _QUOTED):
+        text = rx.sub(blank, text)
+    return text
 
 def digest(draft: str) -> str:
     return hashlib.sha256(draft.encode('utf-8')).hexdigest()
@@ -48,12 +91,20 @@ def quote_check(quote: str, source_id: str, sources: list[dict]) -> dict:
     return {'status':'PASS' if normalized(quote) in normalized(body) else 'FAIL',
             'source_id':source_id, 'reason':'Literal passage found' if normalized(quote) in normalized(body) else 'Passage absent from cited text'}
 
-def risks(draft: str) -> list[dict]:
+def risks(draft: str, *, skip_quoted: bool = True, limit: int = 4) -> list[dict]:
+    """Heurystyczne flagi asymetrii. Cytaty i zaprzeczenia są pomijane (skip_quoted)."""
+    scan = mask_quotes(draft) if skip_quoted else draft
     result=[]
     for code,pat in RISK_PATTERNS.items():
-        for m in list(re.finditer(pat,draft,flags=re.IGNORECASE))[:4]:
+        hits=0
+        for m in re.finditer(pat,scan,flags=re.IGNORECASE):
+            if skip_quoted and NEGATION_BEFORE.search(scan[max(0,m.start()-80):m.start()]):
+                continue
             result.append({'code':code,'excerpt':draft[max(0,m.start()-65):min(len(draft),m.end()+65)],
-                          'verdict':'REVIEW_REQUIRED','reason':'Pattern raises a potential issue; context and sources must be checked'})
+                          'verdict':'REVIEW_REQUIRED',
+                          'reason':RISK_REASONS.get(code,'Pattern raises a potential issue; context and sources must be checked')})
+            hits+=1
+            if hits>=limit:break
     return result
 
 def advocate_review(draft: str, source_claims: list[dict]|None=None) -> dict:

@@ -15,6 +15,18 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Education & Research"
+    },
+    {
+      "name": "symetria-prawna-hooki",
+      "source": {
+        "source": "local",
+        "path": "./plugins/symetria-prawna-hooki"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education & Research"
     }
   ]
 }

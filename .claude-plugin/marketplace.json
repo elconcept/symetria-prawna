@@ -10,6 +10,12 @@
       "source": "./plugins/symetria-dowodowa-tknc",
       "displayName": "Symetria Prawna",
       "description": "Analiza prawna i adwersarialny audyt źródeł"
+    },
+    {
+      "name": "symetria-prawna-hooki",
+      "source": "./plugins/symetria-prawna-hooki",
+      "displayName": "Symetria Prawna — hooki",
+      "description": "Hooki wymuszające symetrię dowodową (Claude Code)"
     }
   ]
 }

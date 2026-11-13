@@ -12,4 +12,13 @@ Claude Code ma dodatkowy **agent** audytora, a nie skill. Agent zapewnia osobny 
 
 Plugin stosuje porównawcze standardy dowodowe, weryfikację aktualności prawa i ocenę kumulacyjną. Nie przyjmuje z góry prawdziwości lub fałszywości wszystkich twierdzeń instytucji.
 
-**Regresja ochronna:** brak `mcp.json` i `requires_local_executor` w pluginie instalowanym do ChatGPT web. Techniczny slug ChatGPT pozostaje niezmieniony, a human-readable displayName to `Symetria Prawna`.
+## Hooki (0.7.0)
+Sam skill okazał się niewystarczający: model nie zawsze go wywoływał, a nawet po wywołaniu wracał do asymetrii (wysoki próg wobec dowodów strony, notatki funkcjonariuszy i dokumentacja lekarska jako fakty). Rdzeń zasad przeniesiono więc do hooków uruchamianych przez host. Hooki są **osobnym pluginem** `symetria-prawna-hooki`, bo katalog `symetria-dowodowa-tknc` instaluje także ChatGPT web, gdzie lokalne wykonawcy psuły instalację. Hooki leżą w domyślnej ścieżce `hooks/hooks.json`, którą odczytują Claude Code i Codex; manifesty nie mają pola `hooks` (walidator Codex/ChatGPT je odrzuca). Heurystyka jest wspólna z serwerem MCP (`core.py`, kopiowana skryptem `sync_hooks_core.py`).
+
+| Warstwa | Wymusza | Ograniczenie |
+| --- | --- | --- |
+| Skill + referencje | pełną metodę (O→P→S, A–K, prawo polskie, kanon) | zależy od wywołania przez model |
+| Hooki | zasady w kontekście przy każdej pracy prawnej, ostrzeżenie przy dokumencie organu, kontrolę sformułowań w pismach i odpowiedzi | heurystyka słownikowa, nie ocena merytoryczna |
+| Agent `audytor-prawny` | niezależną recenzję w osobnym kontekście | na żądanie |
+
+**Regresja ochronna:** brak `mcp.json`, `hooks/` i `requires_local_executor` w pluginie instalowanym do ChatGPT web. Techniczny slug ChatGPT pozostaje niezmieniony, a human-readable displayName to `Symetria Prawna`.
