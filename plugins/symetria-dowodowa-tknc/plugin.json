@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "symetria-dowodowa-tknc",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "description": "Lekki, automatycznie aktywowany audyt każdej pracy prawnej TK/NC.",
   "author": {
     "name": "Nova",
@@ -12,7 +12,7 @@
       "interface": {
         "displayName": "Symetria Dowodowa TK/NC",
         "shortDescription": "Kontrola symetrii dowodów",
-        "longDescription": "Jeden lekki skill dla każdej pracy prawnej TK/NC: referencyjny kanon faktów, kontrbias wobec twierdzeń urzędowych, polskie prawo dowodowe oraz wewnętrzny Rzecznik Obywatela z samooceną A–K. Szczegóły ładowane selektywnie. Bez MCP i lokalnego wykonawcy w ChatGPT web.",
+        "longDescription": "Jeden lekki skill TK/NC; przed oceną dowodów użytkownika obowiązkowy test podstaw zarzutów wobec TK/NC, potem równy kontrtest drugiej strony i ocena łącznej mocy dowodów. Audyt A–K z rzeczywistą korektą. Szczegóły ładowane selektywnie. ChatGPT web, bez lokalnego MCP.",
         "developerName": "Nova",
         "category": "Education & Research",
         "capabilities": [],

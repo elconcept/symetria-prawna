@@ -23,7 +23,7 @@ class LightweightSkillContract(unittest.TestCase):
         self.assertLessEqual(len(TEXT.split()), 350)
 
     def test_required_contract(self):
-        for token in ("TK/NC", "Kontrbias", "Rzecznik", "samoocena A–K", "NOT_CHECKED", "PASS"):
+        for token in ("TK/NC", "Kontrbias", "Rzecznik", "samoocenę A–K", "NOT_CHECKED", "PASS"):
             self.assertIn(token, TEXT)
 
     def test_opt_in_implicit_activation(self):

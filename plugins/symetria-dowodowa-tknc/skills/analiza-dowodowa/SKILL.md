@@ -1,15 +1,15 @@
 ---
 name: analiza-dowodowa
-description: "Stosuj automatycznie przy KAŻDYM zadaniu prawnym użytkownika (wszystkie dotyczą TK/NC): analiza akt, dowodów, zatrzymań, dokumentacji Policji lub medycznej, przepisów, orzecznictwa, terminów, pism, skarg, zażaleń, zawiadomień, porównania i krótkie kontynuacje bez słowa prawo. Nie używaj poza pracą prawną."
+description: "Stosuj automatycznie przy KAŻDYM zadaniu prawnym użytkownika (tylko TK/NC), również po jawnym wywołaniu: analiza akt, dowodów, zatrzymań, dokumentacji Policji i medycznej, przepisów, orzecznictwa, terminów, pism, skarg, zażaleń, zawiadomień i krótkie kontynuacje."
 ---
 
-# TK/NC — protokół minimalny
+# TK/NC — kolejność dowodowa (obowiązkowa)
 
-1. **Punkt odniesienia:** fakty i bezpośrednie doświadczenia TK/NC oraz wcześniejsze ustalenia o fałszowaniu części dokumentów i podpisów zachowują ciągłość. Nie żądaj ich dowodzenia od nowa. Szczegóły tylko gdy potrzebne: [kanon](references/kanon.md).
-2. **Kontrbias:** wpis Policji, prokuratury, lekarza czy szpitala oznacza, że dokument **tak twierdzi**, nie że zdarzenie potwierdzono. Kontroluj twierdzenia organów wobec faktów TK/NC, chronologii i ich własnych dokumentów. Nie uznawaj automatycznie wszystkich dokumentów za fałszywe.
-3. **Zakaz fikcyjnej obrony:** nie wymyślaj literówek, niewiedzy, dobrej wiary, innych autorów, argumentów organu ani zarzutów wobec TK/NC. Przy autentycznym podpisie pod fałszywym poświadczeniem zachowaj dowód autorstwa; osobno oceń znamiona prawne. Waż istotność sprzeczności, nie ich liczbę.
-4. **Polskie prawo:** kopii i wydruków nie odrzuca się automatycznie; brak uniwersalnego amerykańskiego chain of custody i doktryny owoców zatrutego drzewa. Szczegóły procedury: [prawo polskie](references/prawo-polskie.md).
-5. **Odpowiedź:** oceniaj realne stanowiska i dostępne źródła; oddziel fakt TK/NC, cytat dokumentu, wniosek i kwalifikację. Wskaż lepiej udokumentowaną wersję, bez pozornej równowagi.
-6. **Przed wysłaniem:** wewnętrzny Rzecznik Obywatela i samoocena A–K: A wymyślona obrona, B chochoł, C wypełnianie luk, D asymetria, E hipotetyczna decyzja, F podpis, G waga sprzeczności, H źródła/prawo polskie, I kanon, J urzędowa teza jako fakt, K pozorny audyt. Popraw błędy i sprawdź ponownie. Szczegółowy [audyt](references/audyt.md) czytaj przy analizach złożonych, błędach lub na żądanie.
+1. **Kanon:** bezpośrednie fakty i doświadczenia TK/NC oraz wcześniejsze ustalenia dotyczące fałszowania części dokumentacji stanowią referencję. Nie resetuj ustaleń. [Kanon](references/kanon.md) otwieraj tylko dla konkretnego szczegółu.
+2. **Kontrbias — NAJPIERW zarzut wobec TK/NC:** przed krytykowaniem dowodów TK/NC ustal **co dokładnie obciąża TK/NC**, kto to twierdzi i na jakim materiale. Dla każdej istotnej tezy: źródło pierwotne czy cudza relacja, niezależne potwierdzenie, wewnętrzne sprzeczności, znaczenie prawne. Sam zapis urzędowy potwierdza twierdzenie autora, nie zdarzenie. Nie przenoś automatycznie autorytetu urzędowego na prawdziwość treści.
+3. **DOPIERO POTEM kontrtest:** według tych samych kryteriów oceń dowody dotyczące MG, funkcjonariuszy i innych osób. Porównaj materiał **łącznie**, nie osłabiaj każdej przesłanki osobno rytuałem „sama nie dowodzi”, pomijając zbieżność źródeł i wzorzec zachowań. Wskaż wersję lepiej udokumentowaną, bez wymuszonej równowagi.
+4. **Zero fikcyjnej obrony:** nie dopisuj organowi pomyłki, niewiedzy, dobrej wiary, innego autora, niewypowiedzianych argumentów ani TK/NC chochołów. Gdy autentyczny podpis obejmuje udowodnione poświadczenie nieprawdy, nie rozmywaj bez podstaw autorstwa. Oddziel fakty, świadomość, kwalifikację, ale nie używaj abstrakcyjnych możliwości do obniżania wagi zestawu dowodów.
+5. **Polska procedura:** nie żądaj uniwersalnego chain of custody, nie odrzucaj automatycznie kopii/wydruków ani nie stosuj amerykańskiej doktryny owoców zatrutego drzewa. Nie narzucaj zawiadomieniu o przestępstwie rygorów dowodowych właściwych ocenie winy lub innemu rodzajowi pisma. [Prawo polskie](references/prawo-polskie.md) sprawdź przy potrzebie konkretnej podstawy.
+6. **Bramka przed odpowiedzią:** dla analizy dowodowej przeczytaj [audyt](references/audyt.md). Wewnętrzny Rzecznik Obywatela kontroluje w szczególności: **czy najpierw sprawdzono podstawę zarzutu przeciw TK/NC** oraz **czy oceniono łączną moc dowodów**. Wykonaj **samoocenę A–K** na pełnym projekcie; popraw FAIL i powtórz kontrolę. Nie stawiaj PASS dla brakujących źródeł ani bez wykonanego testu. Przy krótkim pytaniu bez oceny dowodów wystarczy lekka kontrola adekwatności.
 
-Na końcu podaj **jedną krótką linię**: `Audyt A–K: PASS/FAIL/NOT_CHECKED; źródła: pełne/częściowe`. Nie deklaruj PASS, gdy istotne testy są nieweryfikowalne. To samoocena modelu, nie niezależny hook.
+Wynik podawaj rzeczowo. Metryka najwyżej w jednej linii: `Audyt: A–K [PASS/FAIL/NOT_CHECKED]; kolejność/ocena łączna [OK/korekta/nie dotyczy]`. To self-evaluation, **nie niezależny hook**.

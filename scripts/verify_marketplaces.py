@@ -17,7 +17,7 @@ legacy = read("plugins/symetria-dowodowa-tknc/.codex-plugin/plugin.json")
 assert len(market["plugins"]) == 1
 assert market["plugins"][0]["name"] == plugin["name"] == legacy["name"] == "symetria-dowodowa-tknc"
 assert market["plugins"][0]["source"]["path"] == "./plugins/symetria-dowodowa-tknc"
-assert plugin["version"] == legacy["version"] == "0.5.0"
+assert plugin["version"] == legacy["version"] == "0.5.2"
 assert plugin["$schema"] == "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 assert not (p / "mcp.json").exists(), "stdio MCP makes ChatGPT plugin desktop-only"
 assert not (p / ".mcp.json").exists(), "legacy MCP must not be bundled"

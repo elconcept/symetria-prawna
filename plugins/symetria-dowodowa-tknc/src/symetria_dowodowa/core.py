@@ -14,6 +14,7 @@ STATUSES = {"PASS", "FAIL", "NOT_CHECKED"}
 FLAGS = ("performed", "counterbias_applied", "reviewed_final_draft",
          "institutional_authority_not_presumed", "hypothetical_defenses_removed", "visible_footer")
 RISK_PATTERNS = {
+    "isolated_intent_dismissal": r"(?:sam[oa]?\s+w\s+sobie\s+nie\s+(?:dowodzi|przes[aą]dza)|samo\s+w\s+sobie\s+nie\s+przes[aą]dza).{0,60}(?:zamiaru|intencji|\u015bwiadomo\u015bci)",
     "fabricated_typo_explanation": r"\b(mo[gż]?[łl]?\s+(?:by\s+)?(?:si[eę]\s+)?pomyli[ćc]|pomy[łl]ka\s+pisarska|liter[oó]wka)\b",
     "invented_good_faith": r"\b(m[oó]g[łl]\s+nie\s+wiedzie[ćc]|dobra\s+wiara|nie\s+mia[łl]\s+\w*\s*zamiaru)\b",
     "automatic_official_trust": r"\b(bo\s+(?:jest\s+)?urz[eę]dow[ya]|dokument\s+urz[eę]dow[ya]\s+(?:jest|musi\s+by[ćc])\s+prawdziw)\b",

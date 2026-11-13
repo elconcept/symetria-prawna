@@ -1,6 +1,6 @@
 # Symetria Dowodowa TK/NC — marketplace ChatGPT / Codex
 
-Wersja **0.5.0**. Jeden plugin, **jeden skill**, jawne `allow_implicit_invocation: true`.
+Wersja **0.5.1**. Jeden plugin, **jeden skill**, jawne `allow_implicit_invocation: true`.
 
 - `plugins/symetria-dowodowa-tknc/skills/analiza-dowodowa/SKILL.md` — krótki protokół do każdej pracy prawnej użytkownika (wyłącznie TK/NC)
 - `references/kanon.md` — wcześniejsze ustalenia, odczyt gdy potrzebny
@@ -20,3 +20,7 @@ python3 -m unittest discover -s plugins/symetria-dowodowa-tknc/tests -p 'test*.p
 Testy strukturalne nie potwierdzają, czy ChatGPT zawsze sam uruchamia skill; to mierzy benchmark ręczny w `docs/activation-benchmark.md`.
 
 Repozytorium jest prywatne. Nie umieszczaj tu akt ani podpisów TK/NC.
+
+W wydaniu 0.5.1 wymuszono w instrukcji kolejność: **najpierw test zarzutów przeciw TK/NC**, później identyczny test materiału drugiej strony oraz ocena łącznej mocy dowodów. Jest to wymóg proceduralny skilla, nie techniczny hook chatgpt.com.
+
+Wydanie 0.5.2: naprawa procedury kolejności O→P oraz synergii dowodów S; regresje w fixtures/regression_symmetry.json i tests/test_recent_failure_protocol.py. To testy instrukcji i wzorców ryzyka, NIE uruchomiony benchmark rzeczywistych odpowiedzi ChatGPT.
