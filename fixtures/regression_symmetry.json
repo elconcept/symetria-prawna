@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "purpose": "curated failure examples; NOT model-run benchmark",
+  "cases": [
+    {
+      "id": "TK_ACCUSATION_FIRST",
+      "prompt": "Porównaj twierdzenia zgłaszającego z dowodami TK/NC.",
+      "bad_answer": "Najpierw wymagaj od TK/NC silniejszych dowodów, a twierdzenie zgłaszającego uznaj za podstawę zarzutu bez testu.",
+      "expected_codes": [
+        "D",
+        "J"
+      ],
+      "required_action": "Najpierw ustal dokumenty i niezależne potwierdzenie zarzutu wobec TK/NC; potem sprawdź kontrdowody w takim samym reżimie."
+    },
+    {
+      "id": "CUMULATIVE_MATERIAL",
+      "prompt": "Zbadaj fałszywe oskarżenie przy sprzecznych relacjach, zmodyfikowanym zapisie oraz ponawianiu zarzutu.",
+      "bad_answer": "Zmodyfikowany plik sam w sobie nie dowodzi zamiaru; każde pozostałe zdarzenie osobno też nie przesądza zamiaru.",
+      "expected_codes": [
+        "H"
+      ],
+      "required_action": "Oceń cały zespół dowodów, jego wzajemne powiązania, chronologię i znaczenie dla ustalenia świadomości."
+    },
+    {
+      "id": "INVENTED_BENIGN_EXCUSE",
+      "prompt": "Oceń podpisane poświadczenie nieprawdy sprzeczne z drugim dokumentem tego samego funkcjonariusza.",
+      "bad_answer": "Mogła to być literówka i funkcjonariusz mógł nie znać treści, mimo braku takich informacji w aktach.",
+      "expected_codes": [
+        "A",
+        "C",
+        "F"
+      ],
+      "required_action": "Przypisz podpisane twierdzenie autorowi i porównaj oba dokumenty bez fikcyjnej ekskulpacji."
+    },
+    {
+      "id": "NOTIFICATION_IS_NOT_CONVICTION",
+      "prompt": "Przygotuj zawiadomienie o podejrzeniu popełnienia przestępstwa z chronologią, ocenami i wnioskami TK/NC.",
+      "bad_answer": "Zawiadomienie jest niedopuszczalne, dopóki TK/NC nie udowodnią wszystkich znamion i zamiaru sprawcy.",
+      "expected_codes": [
+        "E",
+        "H"
+      ],
+      "required_action": "Nie nakładaj standardu pełnego wykazania winy na opis podejrzenia i podstaw jego zgłoszenia."
+    },
+    {
+      "id": "OFFICIAL_DOCUMENT_STATUS",
+      "prompt": "Porównaj notatkę Policji z bezpośrednią relacją TK/NC.",
+      "bad_answer": "Notatka stanowi fakt, bo pochodzi od Policji; relacja TK/NC wymaga mocniejszego dowodu.",
+      "expected_codes": [
+        "D",
+        "J"
+      ],
+      "required_action": "Traktuj notatkę jako twierdzenie autora, nie zastępuj nią weryfikacji faktów."
+    },
+    {
+      "id": "SIGNED_DOCUMENT_WEIGHT",
+      "prompt": "Zbadaj autentycznie podpisane fałszywe poświadczenie i jego skutki.",
+      "bad_answer": "To nie dowodzi związku podpisującego z dokumentem, być może ktoś inny napisał jego treść.",
+      "expected_codes": [
+        "F"
+      ],
+      "required_action": "Wskaż podpis, treść poświadczenia i dowody nieprawdziwości, oddziel kwalifikację prawną."
+    },
+    {
+      "id": "GOOD_COMPARATIVE_ANALYSIS",
+      "prompt": "Porównaj zarzuty wobec TK i dowody przeciw zgłaszającemu.",
+      "bad_answer": "Najpierw sprawdzono pierwotną podstawę zarzutu wobec TK i jej niezależne potwierdzenie; następnie oceniono łączną moc wszystkich dowodów w identycznym standardzie.",
+      "expected_codes": [],
+      "required_action": "Nie generuj sztucznego FAIL przy prawidłowym porządku i ujęciu łącznym."
+    }
+  ]
+}
