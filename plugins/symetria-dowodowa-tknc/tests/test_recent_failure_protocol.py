@@ -11,10 +11,10 @@ FIXTURES=json.loads((ROOT.parent.parent/"fixtures/regression_symmetry.json").rea
 class RecentFailureProtocol(unittest.TestCase):
     def test_order_is_explicit(self):
         self.assertLess(SKILL.index("**NAJPIERW**"),SKILL.index("**POTEM**"))
-        for phrase in ("podstawy twierdzeń obciążających","niezależne potwierdzenie","**ŁĄCZNIE**","A–K"):
+        for phrase in ("twierdzenia obciążające","niezależne potwierdzenie","**ŁĄCZNIE**","A–K"):
             self.assertIn(phrase,SKILL)
     def test_failure_conditions_are_mandatory(self):
-        for phrase in ("D=FAIL","H=FAIL","**O — obciążające twierdzenie:**","**P — porównanie:**","**S — synergia:**"):
+        for phrase in ("D=FAIL","H=FAIL","**O — obciążające twierdzenie:**","**P — przeciwwaga:**","**S — synergia:**"):
             self.assertIn(phrase,AUDIT)
         self.assertIn("zawiadomienie o przestępstwie",AUDIT)
     def test_cases_have_grounded_corrective_actions(self):

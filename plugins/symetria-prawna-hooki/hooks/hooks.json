@@ -1,0 +1,17 @@
+{
+  "description": "Symetria prawna: przypomnienie zasad przy zadaniach prawnych, ostrzeżenie przy wczytaniu dokumentu organu, kontrola asymetrii w zapisanych pismach i w odpowiedzi końcowej",
+  "hooks": {
+    "SessionStart": [
+      {"hooks": [{"type": "command", "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/hooks/symetria_hook.py\"", "timeout": 5}]}
+    ],
+    "UserPromptSubmit": [
+      {"hooks": [{"type": "command", "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/hooks/symetria_hook.py\"", "timeout": 5}]}
+    ],
+    "PostToolUse": [
+      {"hooks": [{"type": "command", "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/hooks/symetria_hook.py\"", "timeout": 5}]}
+    ],
+    "Stop": [
+      {"hooks": [{"type": "command", "command": "python3 -I \"${CLAUDE_PLUGIN_ROOT}/hooks/symetria_hook.py\"", "timeout": 5}]}
+    ]
+  }
+}
