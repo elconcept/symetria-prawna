@@ -27,7 +27,7 @@ claude plugin list
 claude plugin details symetria-prawna
 ```
 
-Skill można wywołać jawnie jako `/symetria-prawna:analiza-prawna`. Agent `audytor-prawny` jest opcjonalnym recenzentem adwersarialnym i nie zakłada, że dowolny organ kłamie. Obowiązkową warstwę stanowią hooki z `symetria-prawna-hooki`.
+Skill można wywołać jawnie jako `/symetria-prawna:analiza-prawna`. Agent `audytor-prawny` jest opcjonalnym recenzentem adwersarialnym i wychodzi od sceptycyzmu wobec dokumentu organu. Obowiązkową warstwę stanowią hooki z `symetria-prawna-hooki`.
 
 ## Codex CLI
 `codex plugin marketplace add elconcept/symetria-prawna`, potem `codex plugin add symetria-dowodowa-tknc@elconcept-symetria` i `codex plugin add symetria-prawna-hooki@elconcept-symetria`. Codex prosi o zaufanie nowym hookom.

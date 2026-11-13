@@ -12,7 +12,7 @@ d=read("plugins/symetria-dowodowa-tknc/.claude-plugin/plugin.json")
 m=read(".claude-plugin/marketplace.json")
 hc=read("plugins/symetria-prawna-hooki/.claude-plugin/plugin.json")
 hx=read("plugins/symetria-prawna-hooki/.codex-plugin/plugin.json")
-VERSION="0.7.0"
+VERSION="0.7.1"
 assert o["version"]==c["version"]==d["version"]==hc["version"]==hx["version"]==VERSION
 assert o["name"]==c["name"]==a["plugins"][0]["name"]=="symetria-dowodowa-tknc"
 assert d["name"]==m["plugins"][0]["name"]=="symetria-prawna"

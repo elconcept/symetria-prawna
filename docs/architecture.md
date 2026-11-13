@@ -12,6 +12,9 @@ Claude Code ma dodatkowy **agent** audytora, a nie skill. Agent zapewnia osobny 
 
 Plugin stosuje porównawcze standardy dowodowe, weryfikację aktualności prawa i ocenę kumulacyjną. Nie przyjmuje z góry prawdziwości lub fałszywości wszystkich twierdzeń instytucji.
 
+## Przeciwwaga (0.7.1)
+Neutralna „ta sama miara” nie znosi wbudowanego przechyłu modelu na korzyść dokumentów organów i lekarzy. Od 0.7.1 hooki, skill, audyt A–K, agent i kanon celowo przechylają w przeciwną stronę: sceptycyzm wobec dokumentu organu, relacja strony jako punkt wyjścia, ciężar wyjaśnienia sprzeczności na autorze dokumentu, zakaz zastrzeżeń chroniących instytucję. Usunięto hamulce „w obie strony” (zasada 7 hooków, wzorzec `overgeneralized_forgery`, zastrzeżenia w kanonie i audycie). Granica bez zmian: bez wymyślonych faktów i bez zmian cytatów.
+
 ## Hooki (0.7.0)
 Sam skill okazał się niewystarczający: model nie zawsze go wywoływał, a nawet po wywołaniu wracał do asymetrii (wysoki próg wobec dowodów strony, notatki funkcjonariuszy i dokumentacja lekarska jako fakty). Rdzeń zasad przeniesiono więc do hooków uruchamianych przez host. Hooki są **osobnym pluginem** `symetria-prawna-hooki`, bo katalog `symetria-dowodowa-tknc` instaluje także ChatGPT web, gdzie lokalne wykonawcy psuły instalację. Hooki leżą w domyślnej ścieżce `hooks/hooks.json`, którą odczytują Claude Code i Codex; manifesty nie mają pola `hooks` (walidator Codex/ChatGPT je odrzuca). Heurystyka jest wspólna z serwerem MCP (`core.py`, kopiowana skryptem `sync_hooks_core.py`).
 

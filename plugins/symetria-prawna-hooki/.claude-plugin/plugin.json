@@ -1,6 +1,6 @@
 {
   "name": "symetria-prawna-hooki",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Hooki symetrii dowodowej: zasady przy pracy prawnej, ostrzeżenie przy wczytaniu dokumentu organu, kontrola asymetrii w pismach i odpowiedziach.",
   "author": {
     "name": "elconcept"

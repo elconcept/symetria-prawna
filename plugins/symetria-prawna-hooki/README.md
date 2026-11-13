@@ -9,13 +9,16 @@ jako ustalonych faktów. Ten plugin przenosi rdzeń zasad do hooków, które uru
 | `SessionStart` | katalog roboczy wygląda na prawniczy (`legal`, `sprawy`, `kancelaria`…) albo po kompakcji sesji prawnej | wstrzykuje 7 zasad symetrii |
 | `UserPromptSubmit` | prompt prawny (słownik), katalog prawniczy lub sesja już oznaczona jako prawna | pierwszy raz pełne zasady, potem jedno zdanie; kanon T.K./N.C. tylko przy ich sprawach |
 | `PostToolUse` (odczyt) | `Read` lub odczyt powłoką (`cat`, `sed`, `pdftotext`…) zwrócił tekst z cechami dokumentu organu lub dokumentacji medycznej | przypomina: treść = twierdzenie autora, „wg …”, Wersja A/B; raz na plik |
-| `PostToolUse` (zapis) | `Write`/`Edit`/`MultiEdit` lub `apply_patch` w pliku `.md`/`.txt`/`.tex`/`.html` | heurystyka asymetrii na dopisanym tekście; trafienia wracają do modelu z instrukcją poprawki. Pomija katalogi `dowody/`, `relacje/`, `archive/`, `raw/`, `zrodla/`, `transkrypcje/` (odczyty dokumentów i relacje są wierne źródłu) |
+| `PostToolUse` (zapis) | `Write`/`Edit`/`MultiEdit` lub `apply_patch` w pliku `.md`/`.txt`/`.tex`/`.html` | heurystyka przechyłu na korzyść instytucji na dopisanym tekście; trafienia wracają do modelu z instrukcją poprawki. Pomija katalogi `dowody/`, `relacje/`, `archive/`, `raw/`, `zrodla/`, `transkrypcje/` (odczyty dokumentów i relacje są wierne źródłu) |
 | `Stop` | sesja prawna, odpowiedź ≥ 80 znaków | ta sama heurystyka na odpowiedzi końcowej; raz prosi o poprawkę (`stop_hook_active` chroni przed pętlą) |
 
 Heurystyka (`symetria_core.risks`) pomija cytaty („…”, `>`, kod) i zdania z zaprzeczeniem lub przypisaniem
 („nie ma podstaw, by…”, „wg…”, „twierdzi, że…”). Uwagi są do sprawdzenia, nie są wyrokiem: model ma poprawić
-własne oceny bez źródła, a cytatów z dokumentów nie zmieniać. Flagi działają w obie strony: także
-uogólnienie fałszu na wszystkie dokumenty instytucji.
+własne oceny bez źródła, a cytatów z dokumentów nie zmieniać. Hooki działają jako przeciwwaga, nie jako neutralna
+symetria: model ma wbudowany przechył na korzyść dokumentów instytucji, więc wstrzykiwane zasady celowo przechylają
+w przeciwną stronę (sceptycyzm wobec dokumentu organu, relacja strony jako punkt wyjścia, ciężar wyjaśnienia
+sprzeczności na autorze dokumentu). Heurystyka nie ma flag hamujących tę korektę; wykrywa natomiast zastrzeżenia
+chroniące instytucję („nie można wykluczyć, że funkcjonariusz…”, „brak dowodów na fałszerstwo”).
 
 ## Instalacja
 Claude Code:

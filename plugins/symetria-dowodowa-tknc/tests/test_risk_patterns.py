@@ -9,7 +9,7 @@ POSITIVE={
  "presumption_of_truth_unqualified":"Dokument korzysta z domniemania prawdziwości.",
  "interested_party_one_sided":"NC jako strona zainteresowana przedstawia zdarzenia korzystnie dla siebie.",
  "disproportionate_proof_demand":"Zawiadomienie nie ma sensu, dopóki TK nie udowodni zamiaru funkcjonariusza.",
- "overgeneralized_forgery":"Wszystkie dokumenty szpitala są sfałszowane.",
+ "institution_protective_hedge":"Nie można wykluczyć, że funkcjonariusz działał prawidłowo.",
  "fabricated_typo_explanation":"Funkcjonariusz mógł się pomylić przy wpisie godziny.",
  "invented_good_faith":"Lekarz działał w dobrej wierze.",
  "copy_automatically_excluded":"Skan nie ma mocy dowodowej.",
@@ -22,10 +22,27 @@ NEGATIVE=[
  "> Z notatki wynika, że zatrzymany był agresywny.",
  "Pełnomocnik twierdzi, że z protokołu wynika brak obrażeń.",
  "Część dokumentów zawiera poświadczenie nieprawdy; każdy oceniamy osobno.",
+ "Wszystkie dokumenty szpitala są sfałszowane.",
+ "Nie dopisuj zastrzeżeń typu: nie można wykluczyć, że funkcjonariusz działał prawidłowo.",
+ "Należy zachować ostrożność przy przechowywaniu dowodów.",
+ "Funkcjonariusz opisujący własną interwencję jest osobą zainteresowaną swoją wersją.",
+ "Żadna z wersji organu nie wyjaśnia tej sprzeczności.",
  "Najpierw sprawdzono podstawę zarzutu wobec TK; następnie oceniono łączną moc dowodów w identycznym standardzie.",
 ]
 
+EXTRA_POSITIVE=[
+ ("institution_protective_hedge","Brak jest dowodów na fałszerstwo dokumentacji."),
+ ("institution_protective_hedge","Należy zachować ostrożność wobec relacji TK."),
+ ("symmetric_neutrality","Żadna z wersji nie jest z góry wiarygodniejsza."),
+ ("symmetric_neutrality","Obie wersje są równie wiarygodne."),
+ ("interested_party_one_sided","Wersja zatrzymanego pochodzi od osoby zainteresowanej odmiennym przedstawieniem zdarzenia."),
+]
+
 class RiskPatterns(unittest.TestCase):
+    def test_extra_positive(self):
+        for code,text in EXTRA_POSITIVE:
+            with self.subTest(text=text):
+                self.assertIn(code,{f['code'] for f in risks(text)})
     def test_positive(self):
         for code,text in POSITIVE.items():
             with self.subTest(code=code):

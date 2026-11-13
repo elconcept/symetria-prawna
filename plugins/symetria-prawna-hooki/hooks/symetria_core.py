@@ -22,15 +22,16 @@ RISK_PATTERNS = {
     "official_record_as_fact": r"\b(?:z\s+)?(?:notat\w*(?:\s+urz[eę]dow\w*|\s+s[łl]u[żz]bow\w*)?|dokumentacj\w*\s+medyczn\w*|kart\w*\s+(?:informacyjn|zlecenia)\w*|protok[oó][łl]\w*|raport\w*|epikryz\w*|wpis\w*\s+w\s+historii\s+choroby)\s+(?:\w+\s+){0,3}?(?:jednoznacznie\s+|niezbicie\s+|wyra[źz]nie\s+)?(?:wynika|potwierdza|dowodzi|udowadnia|ustala|przes[aą]dza|wykazuje)",
     "presumption_of_truth_unqualified": r"domniemani\w*\s+(?:prawdziwo[śs]ci|autentyczno[śs]ci|zgodno[śs]ci\s+z\s+prawd[aą])",
     "party_account_downgraded": r"(?:relacj|twierdzeni|zeznani|wersj|o[śs]wiadczeni|wyja[śs]nieni)\w*\s+(?:strony|u[żz]ytkownik\w*|TK|NC|T\.\s?K\.|N\.\s?C\.|pokrzywdzon\w*|zatrzyman\w*|pacjent\w*|zawiadamiaj[aą]c\w*|wnioskodawc\w*)\s+(?:\w+\s+){0,2}?(?:jest|s[aą]|ma|maj[aą]|pozostaj\w+|stanowi[aą]?)\s+(?:jedynie\s+|wy[łl][aą]cznie\s+|tylko\s+|zbyt\s+)?(?:subiektywn|niepotwierdzon|go[łl]os[łl]own|niewystarczaj[aą]c|interesown|niewiarygodn|s[łl]ab)",
-    "interested_party_one_sided": r"\b(?:jako\s+stron\w*\s+zainteresowan\w*|jest\s+stron[aą]\s+zainteresowan[aą]|w\s+interesie\s+(?:strony|TK|NC))",
+    "interested_party_one_sided": r"\b(?:jako\s+stron\w*\s+zainteresowan\w*|jest\s+stron[aą]\s+zainteresowan[aą]|w\s+interesie\s+(?:strony|TK|NC)|(?:relacj|wersj|zeznani|twierdzeni|wyja[śs]nieni|o[śs]wiadczeni)\w*\s+(?:strony|TK|NC|T\.\s?K\.|N\.\s?C\.|zatrzyman\w*|pokrzywdzon\w*|pacjent\w*|zawiadamiaj[aą]c\w*)\s+[^.;\n]{0,40}?(?:osob|stron)\w*\s+zainteresowan)",
+    "symmetric_neutrality": r"(?:[żz]adna\s+z\s+(?:wersji|relacji|stron)\s+nie\s+(?:jest|ma)\s+(?:z\s+g[oó]ry\s+)?(?:wiarygodniejsz|bardziej\s+wiarygodn|pierwsze[ńn]stw|przewag)|obie\s+(?:wersje|relacje)\s+(?:s[aą]\s+)?(?:r[oó]wnie|jednakowo|tak\s+samo)\s+(?:wiarygodn|prawdopodobn|uprawnion))",
     "disproportionate_proof_demand": r"(?:dop[oó]ki|dopiero\s+gdy|chyba\s+[żz]e)\s+(?:TK|NC|strona|u[żz]ytkownik\w*|zawiadamiaj[aą]c\w*|pokrzywdzon\w*|wnioskodawc\w*)\s+(?:nie\s+)?(?:udowodni|wyka[żz]e|przedstawi|wyka[żz][aą])",
     "trivial_discrepancy": r"kto\s+pierwsz[ya]\s+(?:z[łl]apa[łl]|chwyci[łl]).{0,90}(?:niewiarygodn|niesp[oó]jn)",
     # Proporcja i prawo polskie.
     "chain_of_custody_as_bar": r"(?:brak\s+)?chain\s+of\s+custody.{0,90}(?:dyskwalifik|niedopuszczal|uniemożliw|obowiązkow|konieczn|wymagan)",
     "copy_automatically_excluded": r"(?:kserokopi\w*|kopi\w*|wydruk\w*|skan\w*).{0,85}(?:nie\s+jest\s+dowodem|niedopuszczaln|trzeba\s+odrzuc|należy\s+wyklucz|nie\s+ma\s+mocy\s+dowodowej)",
     "poisonous_tree_as_bar": r"owoc\w*\s+zatrutego\s+drzewa.{0,90}(?:automatycznie|niedopuszczal|odrzuc|wyklucz)",
-    # Symetria w drugą stronę: bez domniemania fałszu wszystkich dokumentów instytucji.
-    "overgeneralized_forgery": r"\b(?:wszystkie|ka[żz]d[ayeo]|ca[łl][ae])\s+(?:\w+\s+){0,3}?(?:dokument\w*|notat\w*|dokumentacj\w*|wpis\w*)\s+(?:\w+\s+){0,4}?(?:jest|s[aą]|zosta[łl][ay]?)\s+(?:\w+\s+)?(?:sfa[łl]szowan|podrobion|nieprawdziw|fa[łl]szyw|poświadczon\w*\s+nieprawd)",
+    # Zastrzeżenia ostrożnościowe chroniące instytucję (przeciwwaga, nie symetria).
+    "institution_protective_hedge": r"(?:nie\s+(?:mo[żz]na|da\s+si[eę])\s+wykluczy[ćc],?\s+[żz]e\s+(?:\w+\s+){0,2}?(?:funkcjonariusz|policjant|lekarz|ratownik|autor\w*\s+dokument|sporz[aą]dzaj[aą]c)|brak\s+(?:jest\s+)?(?:\w+\s+)?dowod[oó]w\s+(?:na|,?\s*[żz]e)\s+(?:\w+\s+){0,2}?(?:fa[łl]szerstw|sfa[łl]szowa|podrobi|po[śs]wiadcz\w*\s+nieprawd)|nale[żz]y\s+zachowa[ćc]\s+ostro[żz]no[śs][ćc]\s+(?:wobec|przy\s+ocenie)\s+(?:relacj|zezna|twierdze|wersj|wyja[śs]nie)\w*\s+(?:strony|TK|NC|T\.\s?K\.|N\.\s?C\.|pokrzywdzon|zatrzyman|zawiadamiaj))",
 }
 
 RISK_REASONS = {
@@ -40,14 +41,15 @@ RISK_REASONS = {
     "automatic_official_trust": "Urzędowy charakter dokumentu nie dowodzi prawdziwości jego treści.",
     "official_record_as_fact": "Dokument organu/lekarza podany jako źródło faktu: zapisz „wg <dokument, k./s.>: …” i zestaw z relacją strony oraz innymi dokumentami.",
     "presumption_of_truth_unqualified": "Domniemanie prawdziwości: wskaż przepis i tryb (nie przenoś między procedurami) oraz czy i czym jest wzruszalne; bez tego usuń.",
-    "party_account_downgraded": "Relacja strony zdegradowana jako subiektywna/niepotwierdzona: zastosuj identyczne kryterium do autora dokumentu albo usuń ocenę.",
-    "interested_party_one_sided": "Argument z interesu strony: zastosuj go symetrycznie (np. funkcjonariusz opisujący własną interwencję) albo usuń.",
+    "party_account_downgraded": "Relacja strony zdegradowana jako subiektywna/niepotwierdzona: usuń tę ocenę; relacja strony jest punktem wyjścia, a krytykę kieruj najpierw do dokumentu organu.",
+    "interested_party_one_sided": "Argument z interesu wobec strony (np. „osoba zainteresowana”): usuń go; interes we własnej wersji ma przede wszystkim autor dokumentu opisujący własną interwencję.",
     "disproportionate_proof_demand": "Wymóg udowodnienia przed działaniem: sprawdź właściwy standard dla tego pisma (zawiadomienie ≠ akt oskarżenia ≠ wyrok).",
+    "symmetric_neutrality": "Neutralne zrównanie wersji: przy dokumencie organu wychodź od sceptycyzmu wobec niego, relacja strony jest punktem wyjścia; wskaż, co przeczy dokumentowi i czego brakuje w jego wersji.",
     "trivial_discrepancy": "Drobna różnica narracyjna podniesiona do sprzeczności: oceń jej związek z przesłanką prawną.",
     "chain_of_custody_as_bar": "Polska procedura nie zna uniwersalnego chain of custody jako warunku dopuszczalności.",
     "copy_automatically_excluded": "Kopia/wydruk nie są z urzędu niedopuszczalne; ocena zależy od trybu i konkretnego zarzutu autentyczności.",
     "poisonous_tree_as_bar": "Brak automatycznej doktryny owoców zatrutego drzewa w polskim procesie; sprawdź konkretny zakaz dowodowy.",
-    "overgeneralized_forgery": "Uogólnienie fałszu na wszystkie dokumenty: każdy dokument oceniaj indywidualnie.",
+    "institution_protective_hedge": "Zastrzeżenie chroniące instytucję, którego nikt nie podniósł: usuń; sprzeczność zapisz jako Wersja A / Wersja B, a ciężar jej wyjaśnienia przypisz autorowi dokumentu.",
 }
 
 # Kontekst, w którym dopasowanie jest omówieniem lub zaprzeczeniem, a nie tezą.

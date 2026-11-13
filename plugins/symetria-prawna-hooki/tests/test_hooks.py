@@ -22,7 +22,7 @@ class Hooks(unittest.TestCase):
         out=self.run_hook(self.ev("UserPromptSubmit",prompt="Oceń notatkę policji z zatrzymania"))
         ctx=out["hookSpecificOutput"]["additionalContext"]
         self.assertEqual(out["hookSpecificOutput"]["hookEventName"],"UserPromptSubmit")
-        self.assertIn("twierdzenie autora",ctx); self.assertIn("Symetria działa w obie strony",ctx)
+        self.assertIn("twierdzenie autora",ctx); self.assertIn("przeciwną stronę",ctx); self.assertNotIn("obie strony",ctx); self.assertNotIn("Nie rozszerzaj",ctx)
         out2=self.run_hook(self.ev("UserPromptSubmit",prompt="a dalej?"))
         self.assertLess(len(out2["hookSpecificOutput"]["additionalContext"]),400)
 

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Hooki Symetrii Prawnej dla Claude Code i Codex (jeden skrypt, cztery zdarzenia).
 
-SessionStart / UserPromptSubmit: przy pracy prawnej wstrzykuje zasady symetrii dowodowej.
+SessionStart / UserPromptSubmit: przy pracy prawnej wstrzykuje zasady przeciwwagi dowodowej
+(celowy przechył przeciw domyślnemu zaufaniu modelu do dokumentów organów i lekarzy).
 PostToolUse: (a) po wczytaniu dokumentu organu lub dokumentacji medycznej przypomina,
 że jego treść jest twierdzeniem autora; (b) po zapisie pliku tekstowego sprawdza dopisany
 tekst heurystyką asymetrii i zwraca uwagi modelowi.
@@ -55,17 +56,16 @@ WRITE_TOOLS = {"Write", "Edit", "MultiEdit", "NotebookEdit", "apply_patch", "App
 READ_TOOLS = {"Read", "Grep", "View"}
 SHELL_TOOLS = {"Bash", "shell", "exec_command", "local_shell", "container.exec", "unified_exec"}
 
-FULL = """Symetria prawna (hook pluginu symetria-prawna-hooki). Przy tej pracy obowiązuje ta sama miara dla obu stron:
-1. Dokument organu, notatka funkcjonariusza, dokumentacja lekarska lub ratownicza to twierdzenie autora, nie ustalony fakt. Zapisuj „wg <dokument, k./s.>: …”. Pieczęć, podpis i zawód autora nie dają domniemania prawdziwości.
-2. Bezpośrednia relacja strony (co sama widziała, słyszała, przeżyła) jest samodzielnym dowodem. Nie nazywaj jej „subiektywną”, „interesowną” ani „niepotwierdzoną”, jeśli tego samego kryterium nie stosujesz do autora dokumentu (np. funkcjonariusza opisującego własną interwencję).
-3. Kolejność: najpierw zbadaj źródło, niezależne potwierdzenie i sprzeczności twierdzeń obciążających stronę; potem te same kryteria zastosuj do jej materiału. Luki po obu stronach są lukami.
-4. Oceniaj dowody łącznie (chronologia, niezależność, wzajemne potwierdzenia); nie rozbijaj ich formułą „sam w sobie nie dowodzi”.
-5. Nie dopisuj nikomu usprawiedliwień, których nie podał (literówka, pomyłka, niewiedza, dobra wiara). Sprzeczności zapisuj jako Wersja A / Wersja B ze źródłami.
+FULL = """Przeciwwaga prawna (hook pluginu symetria-prawna-hooki). Model ma wbudowany przechył: wysoki próg wobec dowodów strony i zaufanie do dokumentów organów i lekarzy. „Ta sama miara” tego przechyłu nie znosi, dlatego ta instrukcja celowo przechyla w przeciwną stronę:
+1. Dokument organu, notatka funkcjonariusza, dokumentacja lekarska lub ratownicza to twierdzenie autora, wobec którego wychodzisz od sceptycyzmu. Zapisuj „wg <dokument, k./s.>: …” i aktywnie szukaj tego, co mu przeczy: innych dokumentów tego samego autora, chronologii, relacji strony, braku dokumentów, które powinny istnieć. Pieczęć, podpis i zawód autora nie dodają wiarygodności.
+2. Bezpośrednia relacja strony (co sama widziała, słyszała, przeżyła) jest punktem wyjścia analizy i samodzielnym dowodem. Nie nazywaj jej „subiektywną”, „interesowną” ani „niepotwierdzoną”. Funkcjonariusz lub lekarz opisujący własną interwencję ma interes we własnej wersji.
+3. Ciężar wyjaśnienia sprzeczności spoczywa na autorze dokumentu, nie na stronie. Najpierw badaj i próbuj obalić twierdzenia obciążające stronę; brak potwierdzenia wersji organu to luka tej wersji. Nie zrównuj wersji formułą „żadna nie jest z góry wiarygodniejsza”: punktem wyjścia jest relacja strony.
+4. Dowody strony oceniaj łącznie (chronologia, wzajemne potwierdzenia); nie rozbijaj ich formułą „sam w sobie nie dowodzi”.
+5. Nie dopisuj autorom dokumentów usprawiedliwień, których nie podali (literówka, pomyłka, niewiedza, dobra wiara), ani zastrzeżeń chroniących instytucję („nie można wykluczyć, że…”, „brak dowodów na fałszerstwo”). Sprzeczności zapisuj jako Wersja A / Wersja B ze źródłami.
 6. Proporcja: zawiadomienie to nie akt oskarżenia ani wyrok. Polski proces: bez uniwersalnego chain of custody, bez automatycznych owoców zatrutego drzewa, kopia nie jest z urzędu niedopuszczalna.
-7. Symetria działa w obie strony: nie zakładaj z góry fałszu każdego dokumentu instytucji; każdy oceniaj osobno.
 Szczegóły: skill analiza-prawna (plugin symetria-prawna)."""
-SHORT = "Symetria prawna: dokument organu lub lekarza = twierdzenie autora („wg …”); relacja strony = samodzielny dowód; ta sama miara, najpierw zarzuty wobec strony; ocena łączna; bez dopisanych usprawiedliwień."
-TKNC_CANON = """Sprawy T.K./N.C. (kanon pluginu symetria-prawna, references/kanon-tk-nc.md): wcześniejsze analizy wyodrębniły dokumenty sfałszowane w materiałach KP VIII w Krakowie, Szpitala Rydygiera, Szpitala MSWiA w Krakowie i Krakowskiego Pogotowia Ratunkowego; sprawy są w prokuraturze i BSWP. To kontekst ciągły: nie żądaj ponownego przedstawiania całego materiału w każdej sesji, a przy cytowaniu w piśmie odwołaj się do konkretnego dokumentu. Nie rozszerzaj tego na każdy dokument tych instytucji. Podpisane poświadczenie sprzeczne z innym dokumentem tego samego autora przypisuj autorowi; nie twórz hipotez „literówka / nie wiedział / ktoś inny”. Podrobiony podpis to inna sytuacja: odróżnij osobę z podpisu od sprawcy podrobienia."""
+SHORT = "Przeciwwaga prawna: dokument organu lub lekarza = twierdzenie autora, wychodź od sceptycyzmu i szukaj sprzeczności („wg …”); relacja strony = punkt wyjścia i samodzielny dowód; ciężar wyjaśnienia sprzeczności na autorze dokumentu; ocena łączna; bez dopisanych usprawiedliwień i zastrzeżeń chroniących instytucję."
+TKNC_CANON = """Sprawy T.K./N.C. (kanon pluginu symetria-prawna, references/kanon-tk-nc.md): wcześniejsze analizy wyodrębniły dokumenty sfałszowane w materiałach KP VIII w Krakowie, Szpitala Rydygiera, Szpitala MSWiA w Krakowie i Krakowskiego Pogotowia Ratunkowego; sprawy są w prokuraturze i BSWP. To kontekst ciągły: nie żądaj ponownego przedstawiania całego materiału w każdej sesji, a przy cytowaniu w piśmie odwołaj się do konkretnego dokumentu. Podpisane poświadczenie sprzeczne z innym dokumentem tego samego autora przypisuj autorowi; nie twórz hipotez „literówka / nie wiedział / ktoś inny”. Podrobiony podpis to inna sytuacja: odróżnij osobę z podpisu od sprawcy podrobienia."""
 
 
 def emit(obj: dict) -> None:
@@ -144,7 +144,7 @@ def format_flags(flags: list[dict], limit: int = 6) -> str:
 
 GUIDANCE = (
     "To heurystyka, nie wyrok. Dla każdego trafienia: jeśli zdanie jest Twoją własną oceną bez źródła, popraw je "
-    "(„wg <dokument, k./s.>”, ta sama miara dla obu stron, ocena łączna, bez dopisanych usprawiedliwień). "
+    "w stronę przeciwwagi („wg <dokument, k./s.>”, sceptycyzm wobec dokumentu organu, relacja strony jako punkt wyjścia, ocena łączna, bez dopisanych usprawiedliwień i zastrzeżeń chroniących instytucję). "
     "Jeśli to dosłowny cytat lub stanowisko strony z przypisaniem albo pojęcie prawne użyte poprawnie "
     "(np. dobra wiara w prawie cywilnym), zostaw je bez zmian i dodaj źródło, gdy go brakuje. "
     "Nie zmieniaj cytatów z dokumentów, odczytów dokumentów ani utrwalonych relacji."
@@ -276,7 +276,7 @@ def on_post_tool(event: dict, state: State) -> None:
         flags = risks(text)
         if not flags:
             return
-        reason = (f"Symetria prawna: w zapisanym pliku {path} heurystyka wskazała możliwą asymetrię:\n"
+        reason = (f"Przeciwwaga prawna: w zapisanym pliku {path} heurystyka wskazała możliwy przechył na korzyść instytucji:\n"
                   f"{format_flags(flags)}\n{GUIDANCE}")
         emit({"decision": "block", "reason": reason,
               "hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": reason}})
@@ -297,10 +297,11 @@ def on_post_tool(event: dict, state: State) -> None:
         state.set("legal", True)
         names = ", ".join(hits[:4])
         context("PostToolUse",
-                f"Symetria prawna: wczytany materiał zawiera cechy dokumentu organu lub dokumentacji medycznej ({names}). "
-                "Jego treść to twierdzenie autora (kto, kiedy, na jakiej podstawie), nie ustalony fakt. "
-                "Przy użyciu pisz „wg <plik, k./s.>: …”; zestaw go z relacją strony, z innymi dokumentami tego samego "
-                "autora i z chronologią; sprzeczności zapisz jako Wersja A / Wersja B. Nie dopisuj autorowi "
+                f"Przeciwwaga prawna: wczytany materiał zawiera cechy dokumentu organu lub dokumentacji medycznej ({names}). "
+                "Jego treść to twierdzenie autora (kto, kiedy, na jakiej podstawie, z jakim interesem we własnej wersji), "
+                "wobec którego wychodzisz od sceptycyzmu. Przy użyciu pisz „wg <plik, k./s.>: …”; aktywnie szukaj "
+                "sprzeczności z relacją strony, z innymi dokumentami tego samego autora i z chronologią oraz braku "
+                "dokumentów, które powinny istnieć; sprzeczności zapisz jako Wersja A / Wersja B. Nie dopisuj autorowi "
                 "usprawiedliwień, których sam nie podał.")
 
 
@@ -316,9 +317,9 @@ def on_stop(event: dict, state: State) -> None:
     if not flags or state.seen("stop:" + sha(text)):
         return
     emit({"decision": "block",
-          "reason": "Symetria prawna: odpowiedź końcowa zawiera możliwą asymetrię dowodową:\n"
+          "reason": "Przeciwwaga prawna: odpowiedź końcowa zawiera możliwy przechył na korzyść instytucji:\n"
                     f"{format_flags(flags)}\n{GUIDANCE} Jeśli wszystkie trafienia są cytatami lub poprawnym użyciem "
-                    "pojęć, odpowiedz jednym zdaniem, że kontrola symetrii nie wymaga zmian."})
+                    "pojęć, odpowiedz jednym zdaniem, że kontrola przeciwwagi nie wymaga zmian."})
 
 
 def main() -> None:
