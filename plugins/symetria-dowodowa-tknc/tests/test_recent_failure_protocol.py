@@ -4,19 +4,19 @@ from pathlib import Path
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-SKILL=(ROOT/"skills/analiza-dowodowa/SKILL.md").read_text(encoding="utf-8")
-AUDIT=(ROOT/"skills/analiza-dowodowa/references/audyt.md").read_text(encoding="utf-8")
+SKILL=(ROOT/"skills/analiza-prawna/SKILL.md").read_text(encoding="utf-8")
+AUDIT=(ROOT/"skills/analiza-prawna/references/audyt-dowodowy.md").read_text(encoding="utf-8")
 FIXTURES=json.loads((ROOT.parent.parent/"fixtures/regression_symmetry.json").read_text(encoding="utf-8"))["cases"]
 
 class RecentFailureProtocol(unittest.TestCase):
     def test_order_is_explicit(self):
-        self.assertLess(SKILL.index("NAJPIERW zarzut"),SKILL.index("DOPIERO POTEM"))
-        for phrase in ("co dokładnie obciąża TK/NC","niezależne potwierdzenie","łącznie","samoocenę A–K"):
+        self.assertLess(SKILL.index("**NAJPIERW**"),SKILL.index("**POTEM**"))
+        for phrase in ("podstawy twierdzeń obciążających","niezależne potwierdzenie","**ŁĄCZNIE**","A–K"):
             self.assertIn(phrase,SKILL)
     def test_failure_conditions_are_mandatory(self):
-        for phrase in ("D=FAIL","H=FAIL","test **O**","test **P**","test **S (synergia)**"):
+        for phrase in ("D=FAIL","H=FAIL","**O — obciążające twierdzenie:**","**P — porównanie:**","**S — synergia:**"):
             self.assertIn(phrase,AUDIT)
-        self.assertIn("zawiadomienie o podejrzeniu przestępstwa",AUDIT)
+        self.assertIn("zawiadomienie o przestępstwie",AUDIT)
     def test_cases_have_grounded_corrective_actions(self):
         self.assertGreaterEqual(len(FIXTURES),7)
         ids={i["id"] for i in FIXTURES}

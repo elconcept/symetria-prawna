@@ -1,3 +1,8 @@
-# Symetria Dowodowa TK/NC v0.5.2
+# Symetria Prawna — wspólny katalog pluginu
 
-Jedyny skill dla spraw prawnych TK/NC. Regresja naprawiona: najpierw badanie dowodów obciążających TK/NC, dopiero potem te same kryteria dla zarzutów przeciw drugiej stronie, oraz ocena łączna dowodów. Wymaga audytu A–K, ale bez udawania technicznego hooka. Nie ma MCP stdio ani local executor w ChatGPT web.
+Wersja 0.6.0. Jeden skill `analiza-prawna` dla wszystkich zagadnień prawnych. Stare wewnętrzne oznaczenie folderu zachowano ze względu na kompatybilność prywatnego pluginu ChatGPT.
+
+ChatGPT: portable `plugin.json`, `.codex-plugin/plugin.json`, `skills/`, brak lokalnego MCP.
+Claude Code: `.claude-plugin/plugin.json`, ten sam `skills/` oraz opcjonalny `agents/audytor-prawny.md`.
+
+Kanon TK/NC jest osobną referencją, odczytywaną wyłącznie gdy zadanie dotyczy tych spraw.

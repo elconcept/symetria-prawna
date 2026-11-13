@@ -1,26 +1,37 @@
-# Symetria Dowodowa TK/NC — marketplace ChatGPT / Codex
+# Symetria Prawna
 
-Wersja **0.5.1**. Jeden plugin, **jeden skill**, jawne `allow_implicit_invocation: true`.
+Prywatny, pojedynczy plugin **Symetria Prawna** dla ChatGPT/Codex oraz Claude Code. Zakres: **wszystkie analizy i sprawy prawne**, nie tylko TK/NC.
 
-- `plugins/symetria-dowodowa-tknc/skills/analiza-dowodowa/SKILL.md` — krótki protokół do każdej pracy prawnej użytkownika (wyłącznie TK/NC)
-- `references/kanon.md` — wcześniejsze ustalenia, odczyt gdy potrzebny
-- `references/audyt.md` — szczegółowe testy A–K i Rzecznik Obywatela, ładowane przy analizach złożonych lub błędach
-- `references/prawo-polskie.md` — reguły właściwe dla polskiej procedury
-- `src/` i `pyproject.toml` — *opcjonalny* lokalny Python/MCP, nieuruchamiany przez ChatGPT web
+## Architektura
+- Jeden automatycznie wybierany skill: `skills/analiza-prawna/SKILL.md` (instrukcje krótkie, progressive disclosure).
+- `references/audyt-dowodowy.md` — kontrola A–K, kolejność badania O→P i ocena kumulacyjna S, odczyt przy złożonej analizie.
+- `references/prawo-polskie.md` — polskie zasady dowodowe, gdy dotyczy.
+- `references/kanon-tk-nc.md` — dotychczasowe ustalenia TK/NC, **wyłącznie w ich sprawach**.
+- Claude Code ma dodatkowo `agents/audytor-prawny.md` — opcjonalnego recenzenta w osobnym kontekście; nie jest drugim skillem.
+- Narzędzia Python istnieją w repozytorium, ale nie są automatycznie podpinane do ChatGPT web ani Claude Code.
 
-Przyjęte fakty TK/NC są odniesieniem przy ocenie dokumentów; zapisy urzędowe są twierdzeniami autorów, nie automatycznym potwierdzeniem zdarzeń. Nie dopisuj spekulatywnych wyjaśnień ani fikcyjnych kontrargumentów organom. Utrzymuj ustalenia wcześniejszych analiz fałszowania części dokumentacji. Każde zadanie prawne kończ krótką samooceną A–K; nie myl jej z niezależnym audytem modelu.
+## ChatGPT / Codex
+Manifest: `plugins/symetria-dowodowa-tknc/plugin.json`. Repo marketplace: `.agents/plugins/marketplace.json`. Nowa **nazwa wyświetlana** to `Symetria Prawna`.
 
-**Krytyczne ograniczenie:** nie dodawać `mcp.json`, `.mcp.json` ani `requires_local_executor` do instalowanego pluginu — spowodowało to wcześniej jego niedostępność w ChatGPT web.
+Wewnętrzny identyfikator `symetria-dowodowa-tknc` oraz folder pozostają celowo bez zmian, żeby nie przerywać istniejącej prywatnej instalacji i odwołań `@plugin`. Jest to historyczny identyfikator techniczny, a **nie ograniczenie zakresu skilla**. W ChatGPT zachowujemy `skills-only`, bez `mcp.json` i `requires_local_executor`, ponieważ lokalne stdio powodowało wcześniej niedostępność.
 
-Sprawdzenie:
+## Claude Code
+Manifest: `plugins/symetria-dowodowa-tknc/.claude-plugin/plugin.json`. Marketplace: `.claude-plugin/marketplace.json`.
+
+```sh
+claude plugin marketplace add elconcept/symetria-prawna
+claude plugin install symetria-prawna@elconcept-symetria-prawna
+claude plugin list
+claude plugin details symetria-prawna
+```
+
+Skill można wywołać jawnie jako `/symetria-prawna:analiza-prawna`. Agent `audytor-prawny` jest opcjonalnym recenzentem adwersarialnym, nie obowiązkowym hookiem i nie zakłada, że dowolny organ kłamie.
+
+## Kontrola
 ```sh
 python3 scripts/verify_marketplaces.py
 python3 -m unittest discover -s plugins/symetria-dowodowa-tknc/tests -p 'test*.py'
 ```
-Testy strukturalne nie potwierdzają, czy ChatGPT zawsze sam uruchamia skill; to mierzy benchmark ręczny w `docs/activation-benchmark.md`.
+`claude plugin validate .` oraz `claude plugin validate ./plugins/symetria-dowodowa-tknc` należy wykonać w środowisku z CLI Claude Code. Testy statyczne **nie dowodzą**, że model faktycznie uruchomi skill w każdym zadaniu, ani że samoocena wykryje wszystkie błędy.
 
-Repozytorium jest prywatne. Nie umieszczaj tu akt ani podpisów TK/NC.
-
-W wydaniu 0.5.1 wymuszono w instrukcji kolejność: **najpierw test zarzutów przeciw TK/NC**, później identyczny test materiału drugiej strony oraz ocena łącznej mocy dowodów. Jest to wymóg proceduralny skilla, nie techniczny hook chatgpt.com.
-
-Wydanie 0.5.2: naprawa procedury kolejności O→P oraz synergii dowodów S; regresje w fixtures/regression_symmetry.json i tests/test_recent_failure_protocol.py. To testy instrukcji i wzorców ryzyka, NIE uruchomiony benchmark rzeczywistych odpowiedzi ChatGPT.
+Repozytorium pozostaje prywatne. Nie dodawaj do niego akt, danych medycznych, skanów podpisów ani sekretów.

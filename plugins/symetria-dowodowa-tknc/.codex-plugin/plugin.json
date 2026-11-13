@@ -1,24 +1,25 @@
 {
   "interface": {
-    "displayName": "Symetria Dowodowa TK/NC",
-    "shortDescription": "Kontrola symetrii dowodów",
-    "longDescription": "Jeden lekki skill TK/NC; przed oceną dowodów użytkownika obowiązkowy test podstaw zarzutów wobec TK/NC, potem równy kontrtest drugiej strony i ocena łącznej mocy dowodów. Audyt A–K z rzeczywistą korektą. Szczegóły ładowane selektywnie. ChatGPT web, bez lokalnego MCP.",
+    "displayName": "Symetria Prawna",
+    "shortDescription": "Niezależna analiza i audyt prawny",
+    "longDescription": "Jedna procedura dla każdej pracy prawnej: sprawdzenie źródeł i podstaw prawnych, symetryczna ocena dowodów, uwzględnienie ich łącznej mocy oraz krytyczna samoocena A–K. Kanon TK/NC jest opcjonalnym materiałem dotyczącym wyłącznie tych spraw. Kompatybilny z ChatGPT web: bez lokalnego MCP.",
     "developerName": "Nova",
     "category": "Education & Research",
     "capabilities": [],
     "defaultPrompt": [
-      "Analizuj TK/NC z faktami użytkownika jako referencją, krytyczną oceną dokumentów organów i obowiązkową samooceną.",
-      "Audytuj tę analizę: wskaż wymyślone argumenty, chochoły oraz asymetrię dowodową.",
-      "Porównaj rzeczywiste stanowiska TK/NC i organu, bez tworzenia hipotetycznych usprawiedliwień."
+      "Przeanalizuj sprawę prawną: źródła, podstawy prawne, rzeczywiste twierdzenia i końcowy wniosek.",
+      "Wykonaj adwersarialny audyt tej analizy: sprawdź symetrię dowodów, luki, argumenty niewystępujące w źródłach i ocenę łączną.",
+      "Porównaj rzeczywiste stanowiska stron i wskaż, która wersja jest lepiej udokumentowana."
     ]
   },
   "name": "symetria-dowodowa-tknc",
-  "version": "0.5.2",
-  "description": "Lekki, automatycznie aktywowany audyt każdej pracy prawnej TK/NC.",
+  "version": "0.6.0",
+  "description": "Niezależna, symetryczna analiza wszystkich spraw i zagadnień prawnych.",
   "author": {
     "name": "Nova",
     "email": "novasilentcore@gmail.com"
   },
   "keywords": [],
-  "skills": "./skills"
+  "skills": "./skills",
+  "repository": "https://github.com/elconcept/symetria-prawna"
 }

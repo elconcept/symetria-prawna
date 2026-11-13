@@ -1,0 +1,15 @@
+{
+  "name": "elconcept-symetria-prawna",
+  "description": "Prywatny marketplace analiz prawnych",
+  "owner": {
+    "name": "elconcept"
+  },
+  "plugins": [
+    {
+      "name": "symetria-prawna",
+      "source": "./plugins/symetria-dowodowa-tknc",
+      "displayName": "Symetria Prawna",
+      "description": "Analiza prawna i adwersarialny audyt źródeł"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Symetria Prawna"
+  short_description: "Niezależna analiza i audyt prawny"
+policy:
+  allow_implicit_invocation: true

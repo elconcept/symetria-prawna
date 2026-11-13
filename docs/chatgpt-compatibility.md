@@ -1,3 +1,5 @@
-# Kompatybilność ChatGPT web
+# Dostępność ChatGPT web
 
-Od 0.4.2 i w 0.5.0 instalacja jest skills-only: brak mcp.json, .mcp.json oraz requires_local_executor. Zachowujemy repozytoryjny kod lokalnego MCP wyłącznie jako narzędzie uruchamiane osobno. Nie podpinaj go przez stdio do ChatGPT web. W 0.5.0 jest jeden skill z implicit invocation; nie jest to gwarantowany hook przed wysłaniem odpowiedzi. Weryfikuj manifest testem scripts/verify_marketplaces.py oraz sesje użytkowe benchmarkiem docs/activation-benchmark.md.
+Wcześniejszy lokalny MCP stdio i `requires_local_executor` spowodowały zniknięcie pluginu z chatgpt.com. Dlatego wydanie 0.6.0 zachowuje pakiet **skills-only**, bez automatycznego MCP. Nadpisanie istniejącego pluginu musi zachować jego backend ID i historyczny techniczny slug `symetria-dowodowa-tknc`; zmienia się tylko nazwa wyświetlana, zakres skilla i zawartość.
+
+W ChatGPT po zaktualizowaniu wydania poprzednie okno rozmowy może nadal udostępniać zapamiętaną listę skilli. Potwierdzaj osobno: (1) pliki i wydanie zapisane na koncie przez Plugin Creator, (2) rzeczywiście zaczytaną treść w **nowym** czacie. Brak technicznego hooka przechwytującego każdą odpowiedź ChatGPT web.

@@ -1,4 +1,4 @@
-# Prawo polskie — reguły dowodowe dla analiz TK/NC
+# Prawo polskie — reguły dowodowe dla analiz polskiego prawa
 
 ## Reguła jurysdykcyjna
 Przed oceną wskazuj właściwy tryb: postępowanie karne (k.p.k.), wykroczeniowe (k.p.w.), cywilne (k.p.c.) lub administracyjne (k.p.a.). Nie przenoś automatycznie procedury amerykańskiej do spraw polskich. Gdy zasada zależy od trybu i rodzaju dowodu, wyjaśnij ten konkretny wyjątek zamiast tworzyć uniwersalny zakaz.
@@ -6,8 +6,8 @@ Przed oceną wskazuj właściwy tryb: postępowanie karne (k.p.k.), wykroczeniow
 ## Dokument urzędowy — zapis nie zastępuje dowodu prawdziwości
 W analizie faktograficznej odróżniaj: (a) dokument zawiera twierdzenie X; (b) dokument sporządziła osoba Y; (c) treść X jest zgodna ze zdarzeniem. Z (a) nie wynika automatycznie (c). Pieczęć, podpis lub nagłówek nie mogą zastąpić konfrontacji z niezależnymi źródłami, relacjami TK/NC, chronologią i dokumentami samego organu. Nie traktuj oficjalnego zapisu jako rozstrzygającego kontrdowodu przeciw bezpośredniej obserwacji TK/NC.
 
-## Punkt odniesienia
-Przyjmuj podane przez TK/NC fakty i własne doświadczenia jako faktyczny punkt odniesienia w pracy nad ich sprawami, bez żądania ponownego udowadniania w każdym oknie. Zachowuj dosłowność tych relacji. Tego samego nie rozszerzaj automatycznie na przytoczone przez nich opinie osób trzecich, domysły lub kwalifikacje prawne. Nie używaj tych rozróżnień do rytualnego podważania faktów referencyjnych.
+## Punkt odniesienia (w szczególności TK/NC)
+Przyjmuj podane przez użytkownika fakty i własne doświadczenia jako faktyczny punkt odniesienia w pracy nad ich sprawami, bez żądania ponownego udowadniania w każdym oknie. Zachowuj dosłowność tych relacji. Tego samego nie rozszerzaj automatycznie na przytoczone przez nich opinie osób trzecich, domysły lub kwalifikacje prawne. Nie używaj tych rozróżnień do rytualnego podważania faktów referencyjnych.
 
 ## Brak automatycznego amerykańskiego „chain of custody”
 Polski k.p.k. nie ustanawia jednolitego, powszechnego warunku admissibility określanego jako „chain of custody”, którego brak automatycznie dyskwalifikuje dowód. Pytania o pochodzenie, integralność, zabezpieczenie i identyfikację są istotne wtedy, gdy materiał daje do tego konkretną podstawę, przede wszystkim dla wiarygodności i autentyczności; nie twórz z nich obligatoryjnej checklisty wykluczającej. W razie szczególnych przepisów dotyczących danego dowodu badaj je odrębnie.
